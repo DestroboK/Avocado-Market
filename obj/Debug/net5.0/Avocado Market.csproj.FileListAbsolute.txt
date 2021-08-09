@@ -97,3 +97,7 @@ C:\Users\Kelvin\Desktop\Blazor\Avocado Market\bin\Debug\net5.0\Syncfusion.Blazor
 C:\Users\Kelvin\Desktop\Blazor\Avocado Market\bin\Debug\net5.0\Syncfusion.ExcelExport.Net.dll
 C:\Users\Kelvin\Desktop\Blazor\Avocado Market\bin\Debug\net5.0\Syncfusion.Licensing.dll
 C:\Users\Kelvin\Desktop\Blazor\Avocado Market\bin\Debug\net5.0\Syncfusion.PdfExport.Net.dll
+C:\Users\Kelvin\Desktop\Blazor\Avocado Market\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+C:\Users\Kelvin\Desktop\Blazor\Avocado Market\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+C:\Users\Kelvin\Desktop\Blazor\Avocado Market\obj\Debug\net5.0\RazorDeclaration\Pages\About.razor.g.cs
+C:\Users\Kelvin\Desktop\Blazor\Avocado Market\obj\Debug\net5.0\Razor\Pages\About.razor.g.cs

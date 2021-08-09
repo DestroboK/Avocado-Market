@@ -104,7 +104,7 @@ using Syncfusion.Blazor.Maps;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 22 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\Shared\MainLayout.razor"
+#line 27 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\Shared\MainLayout.razor"
        
     bool _drawerOpen = true;
 
