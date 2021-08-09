@@ -92,3 +92,8 @@ C:\Users\Kelvin\Desktop\Blazor\Avocado Market\obj\Debug\net5.0\Avocado Market.dl
 C:\Users\Kelvin\Desktop\Blazor\Avocado Market\obj\Debug\net5.0\ref\Avocado Market.dll
 C:\Users\Kelvin\Desktop\Blazor\Avocado Market\obj\Debug\net5.0\Avocado Market.pdb
 C:\Users\Kelvin\Desktop\Blazor\Avocado Market\obj\Debug\net5.0\Avocado Market.genruntimeconfig.cache
+C:\Users\Kelvin\Desktop\Blazor\Avocado Market\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Kelvin\Desktop\Blazor\Avocado Market\bin\Debug\net5.0\Syncfusion.Blazor.dll
+C:\Users\Kelvin\Desktop\Blazor\Avocado Market\bin\Debug\net5.0\Syncfusion.ExcelExport.Net.dll
+C:\Users\Kelvin\Desktop\Blazor\Avocado Market\bin\Debug\net5.0\Syncfusion.Licensing.dll
+C:\Users\Kelvin\Desktop\Blazor\Avocado Market\bin\Debug\net5.0\Syncfusion.PdfExport.Net.dll

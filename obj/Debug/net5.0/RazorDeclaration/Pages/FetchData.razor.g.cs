@@ -90,6 +90,13 @@ using MudBlazor;
 #line hidden
 #nullable disable
 #nullable restore
+#line 12 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\_Imports.razor"
+using Syncfusion.Blazor.Maps;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\Pages\FetchData.razor"
 using Avocado_Market.Data;
 

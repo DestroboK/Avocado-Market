@@ -89,6 +89,13 @@ using MudBlazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 12 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\_Imports.razor"
+using Syncfusion.Blazor.Maps;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/counter")]
     public partial class Counter : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -98,14 +105,21 @@ using MudBlazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 9 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\Pages\Counter.razor"
+#line 10 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\Pages\Counter.razor"
        
-    private int currentCount = 0;
-
-    private void IncrementCount()
+    public class MapDataSettings
     {
-        currentCount++;
+        public Boolean async {get; set;}
+        public String dataOptions {get; set;}
+        public String type {get; set;}
     }
+    public MapDataSettings MapShapeData = new MapDataSettings
+    {
+        async = true,
+        type = "GET",
+        dataOptions = "scripts/MapsData/world-map.json"
+    };
+
 
 #line default
 #line hidden

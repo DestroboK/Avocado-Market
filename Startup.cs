@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Avocado_Market.Data;
 using MudBlazor.Services;
+using Syncfusion.Blazor;
 namespace Avocado_Market
 {
     public class Startup
@@ -30,11 +31,13 @@ namespace Avocado_Market
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddMudServices();
+            services.AddSyncfusionBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDg1NzA4QDMxMzkyZTMyMmUzMFZIRStVSmtwUWsrYUsyQSs4a1Avam4zRFN5UFMvVzZxZHhvUWJ3dG12VHc9");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

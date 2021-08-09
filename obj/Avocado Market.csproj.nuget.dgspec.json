@@ -63,6 +63,10 @@
             "MudBlazor": {
               "target": "Package",
               "version": "[5.1.0, )"
+            },
+            "Syncfusion.Blazor": {
+              "target": "Package",
+              "version": "[19.2.0.51, )"
             }
           },
           "imports": [

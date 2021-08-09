@@ -1,7 +1,14 @@
 @page "/"
+<SfMaps>
+    <MapsTitleSettings Text="Team aguacate esta trabajando...">
 
-<h1>Hello, world!</h1>
+    </MapsTitleSettings>
+<MapsLayers>
+   @* To load shape data *@
+   <MapsLayer ShapeData='new {dataOptions= "https://cdn.syncfusion.com/maps/map-data/world-map.json"}' TValue="string">
+   </MapsLayer>
+</MapsLayers>
+</SfMaps>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+
