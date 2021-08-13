@@ -96,6 +96,27 @@ using Syncfusion.Blazor.Maps;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\Pages\Login.razor"
+using System.Text.RegularExpressions;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\Pages\Login.razor"
+using System.ComponentModel.DataAnnotations;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\Pages\Login.razor"
+using Avocado_Market.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
     public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -104,6 +125,56 @@ using Syncfusion.Blazor.Maps;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 38 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\Pages\Login.razor"
+       
+    bool success;
+    string hola = "";
+    string[] errors = { };
+    MudTextField<string> pwField1;
+    MudForm form;
+
+        async Task ProcessSomething()
+    {
+        hola = "fafwafwaf";
+        await Task.Delay(50);
+
+    }
+
+
+
+    private IEnumerable<string> PasswordStrength(string pw)
+    {
+        if (string.IsNullOrWhiteSpace(pw))
+        {
+            yield return "Es necesaria una contraseña!";
+            yield break;
+        }
+        if (pw.Length < 8)
+            yield return "La contraseña debe tener almenos 8 caracteres.";
+        if (!Regex.IsMatch(pw, @"[A-Z]"))
+            yield return "La contraseña debe tener almenos 1 letra mayúscula.";
+        if (!Regex.IsMatch(pw, @"[a-z]"))
+            yield return "La contraseña debe tener almenos 1 letra minúscula.";
+        if (!Regex.IsMatch(pw, @"[0-9]"))
+            yield return "La contraseña debe tener almenos 1 digito.";
+    }
+
+    private string PasswordMatch(string arg)
+    {
+        if (pwField1.Value != arg)
+            return "Passwords don't match";
+        return null;
+    }
+    
+    public Usuario usuario = new Usuario();
+
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

@@ -1,10 +1,18 @@
 ﻿<MudNavMenu>
-    <MudNavLink Href="/Counter">Counter</MudNavLink>
-    <MudNavLink Href="/login">Login</MudNavLink>
-    <MudNavLink Href="/servers">Servers</MudNavLink>
-    <MudNavGroup Title="Settings" Expanded="true">
-        <MudNavLink Href="/users">Users</MudNavLink>
-        <MudNavLink Href="/security">Security</MudNavLink>
-    </MudNavGroup>
-    <MudNavLink Href="/about">About</MudNavLink>
+    <AuthorizeView>
+        <Authorized>
+            <MudNavLink Href="/Counter">Counter</MudNavLink>
+            <MudNavLink Href="/servers">Servers</MudNavLink>
+            <MudNavLink Href="/identity/account/logout">Cerrar Sesion</MudNavLink>
+            <MudNavGroup Title="Settings" Expanded="true">
+                <MudNavLink Href="/users">Users</MudNavLink>
+                <MudNavLink Href="/security">Security</MudNavLink>
+            </MudNavGroup>
+            <MudNavLink Href="/about">About</MudNavLink>
+        </Authorized>
+        <NotAuthorized>
+            <MudNavLink Href="/identity/account/login">Iniciar Sesion</MudNavLink>
+            <MudNavLink Href="/about">About</MudNavLink>
+        </NotAuthorized>
+    </AuthorizeView>
 </MudNavMenu>

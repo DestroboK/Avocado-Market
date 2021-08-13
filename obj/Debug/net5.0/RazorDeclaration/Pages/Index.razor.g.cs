@@ -96,6 +96,13 @@ using Syncfusion.Blazor.Maps;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\Kelvin\Desktop\Blazor\Avocado Market\Pages\Index.razor"
+using Avocado_Market.Data;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {

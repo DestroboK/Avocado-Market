@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Avocado_Market.Data;
 using MudBlazor.Services;
 using Syncfusion.Blazor;
+using Avocado_Market.Data;
+using Microsoft.AspNetCore.Components.Authorization;
 namespace Avocado_Market
 {
     public class Startup
@@ -27,11 +29,15 @@ namespace Avocado_Market
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddAuthentication("Identity.Application").AddCookie();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddMudServices();
             services.AddSyncfusionBlazor();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +59,8 @@ namespace Avocado_Market
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();
