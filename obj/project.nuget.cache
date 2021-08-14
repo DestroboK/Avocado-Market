@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "P5X/RlU+vVet8eIXzgv/tHMVaiFSbJB7koeyyYfFE5R7nVUo4m/nmuKLR6nmq1lHYS/WGxyfLUBIkbMu7mH24A==",
+  "dgSpecHash": "LhgWtQWZ68Ys0XiZ6uOrrWkvJie2lpuNjVK/rHc78/ctzfmqivrqyymFVGHdpn+Hl/k105Id6Td9UpAzzakmrw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Kelvin\\Desktop\\Blazor\\Avocado Market\\Avocado Market.csproj",
+  "projectFilePath": "C:\\Users\\Kelvin\\Desktop\\Polsia\\hola\\Avocado-Market\\Avocado Market.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Kelvin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Kelvin\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.9\\microsoft.aspnetcore.authorization.5.0.9.nupkg.sha512",
