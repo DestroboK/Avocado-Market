@@ -104,6 +104,17 @@ using Syncfusion.Blazor.Maps;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 25 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\About.razor"
+      
+    private bool arrows = true;
+    private bool delimiters = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591
