@@ -112,7 +112,7 @@ using Avocado_Market.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 40 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Index.razor"
+#line 39 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Index.razor"
       
     //CODIGO PARA HACER QUE ESTA PAGINA SOLO SEA VISIBLE PARA ADMINS. COLOCAR AL INICIO DE PAGINA
     //@attribute [Authorize(Roles = "Administrador")]//
