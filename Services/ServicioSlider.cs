@@ -9,11 +9,11 @@ namespace Avocado_Market.Services
 {
     public interface IServicioSlider
     {
-        Task<List<Categoria>> Get();
-        Task<Categoria> Get(int id);
-        Task<Categoria> Add(Categoria cate);
-        Task<Categoria> Update(Categoria cate);
-        Task<Categoria> Delete(int id);
+        Task<List<PaginasSlider>> Get();
+        Task<PaginasSlider> Get(int id);
+        Task<PaginasSlider> Add(PaginasSlider cate);
+        Task<PaginasSlider> Update(PaginasSlider cate);
+        Task<PaginasSlider> Delete(int id);
     }
     public class ServicioSlider : IServicioSlider
     {
@@ -22,33 +22,33 @@ namespace Avocado_Market.Services
         {
             _context = context;
         }
-        public async Task<List<Categoria>> Get()
+        public async Task<List<PaginasSlider>> Get()
         {
-            return await _context.Categorias.ToListAsync();
+            return await _context.PaginasSlider.ToListAsync();
         }
 
-        public async Task<Categoria> Get(int id)
+        public async Task<PaginasSlider> Get(int id)
         {
-            var CategoriaExacta = await _context.Categorias.FindAsync(id);
-            return CategoriaExacta;
+            var PagiSliExacta = await _context.PaginasSlider.FindAsync(id);
+            return PagiSliExacta;
         }
-        public async Task<Categoria> Add(Categoria cate)
+        public async Task<PaginasSlider> Add(PaginasSlider cate)
         {
-            _context.Categorias.Add(cate);
+            _context.PaginasSlider.Add(cate);
             await _context.SaveChangesAsync();
             return cate;
         }
-        public async Task<Categoria> Delete(int id)
+        public async Task<PaginasSlider> Delete(int id)
         {
-            var cate = await _context.Categorias.FindAsync(id);
-            _context.Categorias.Remove(cate);
+            var cate = await _context.PaginasSlider.FindAsync(id);
+            _context.PaginasSlider.Remove(cate);
             await _context.SaveChangesAsync();
             return cate;
         }
 
 
 
-        public async Task<Categoria> Update(Categoria cate)
+        public async Task<PaginasSlider> Update(PaginasSlider cate)
         {
             _context.Update(cate);
             await _context.SaveChangesAsync();
