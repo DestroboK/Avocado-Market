@@ -2,13 +2,23 @@
     <AuthorizeView>
         <Authorized>
             <MudNavLink Href="/Counter">Counter</MudNavLink>
-            <MudNavLink Href="/servers">Servers</MudNavLink>
-            <MudNavLink Href="/identity/account/logout">Cerrar Sesion</MudNavLink>
-            <MudNavGroup Title="Settings" Expanded="true">
-                <MudNavLink Href="/users">Users</MudNavLink>
-                <MudNavLink Href="/security">Security</MudNavLink>
+            <MudNavGroup Title="Vistas de usuarios" Expanded="false">
+                <MudNavLink Href="/mercado">Mercado</MudNavLink>
+                <MudNavLink Href="/carrito">Mi carrito</MudNavLink>
+                <MudNavLink Href="/usuario/pedidos">Mis pedidos</MudNavLink>
+            </MudNavGroup>
+            <MudNavGroup Title="Vistas de administradores" Expanded="false">
+                <MudNavLink Href="/admin/clientes">Clientes</MudNavLink>
+                <MudNavLink Href="/admin/slider">Administrar slider</MudNavLink>
+                <MudNavLink Href="/admin/categorias">Administrar categorías</MudNavLink>
+                <MudNavLink Href="/admin/productos">Administrar productos</MudNavLink>
+                <MudNavLink Href="/admin/pedidos">Administrar pedidos</MudNavLink>
+                <MudNavLink Href="/admin/mapapedidos">Mapa de pedidos</MudNavLink>
+                <MudNavLink Href="/admin/cumples">Cumpleaños por mes</MudNavLink>
+
             </MudNavGroup>
             <MudNavLink Href="/about">About</MudNavLink>
+            <MudNavLink Href="/identity/account/logout">Cerrar Sesion</MudNavLink>
         </Authorized>
         <NotAuthorized>
             <MudNavLink Href="/identity/account/login">Iniciar Sesion</MudNavLink>

@@ -1,0 +1,25 @@
+﻿@page "/admin/mapapedidos"
+<h3>MapaPedidos</h3>
+
+<SfMaps>
+    <MapsLayers>
+        @* To load shape data *@
+        <MapsLayer ShapeData='new {dataOptions= "https://cdn.syncfusion.com/maps/map-data/world-map.json"}' TValue="string">
+        </MapsLayer>
+    </MapsLayers>
+</SfMaps>
+@code {
+    public class MapDataSettings
+    {
+        public Boolean async { get; set; }
+        public String dataOptions { get; set; }
+        public String type { get; set; }
+    }
+    public MapDataSettings MapShapeData = new MapDataSettings
+    {
+        async = true,
+        type = "GET",
+        dataOptions = "scripts/MapsData/world-map.json"
+    };
+
+}

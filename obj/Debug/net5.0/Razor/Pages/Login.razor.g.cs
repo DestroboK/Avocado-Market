@@ -94,6 +94,20 @@ using Syncfusion.Blazor.Maps;
 #line hidden
 #nullable disable
 #nullable restore
+#line 13 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Avocado_Market.Areas.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Avocado_Market.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Login.razor"
 using System.Text.RegularExpressions;
 

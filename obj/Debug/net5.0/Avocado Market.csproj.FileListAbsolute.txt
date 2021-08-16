@@ -508,3 +508,23 @@ C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Avocado Mark
 C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\ref\Avocado Market.dll
 C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Avocado Market.pdb
 C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Avocado Market.genruntimeconfig.cache
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\RazorDeclaration\Pages\Vistas del Admin\AdminClientes.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\RazorDeclaration\Pages\Vistas del Admin\AdminSlider.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\RazorDeclaration\Pages\Vistas del Admin\Categorias.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\RazorDeclaration\Pages\Vistas del Admin\CrudProductos.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\RazorDeclaration\Pages\Vistas del Admin\Cumples.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\RazorDeclaration\Pages\Vistas del Admin\MapaPedidos.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\RazorDeclaration\Pages\Vistas del Admin\Pedidos.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\RazorDeclaration\Pages\Vistas del Usuario\Carrito.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\RazorDeclaration\Pages\Vistas del Usuario\Mercado.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Razor\Pages\Vistas del Admin\AdminClientes.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Razor\Pages\Vistas del Admin\AdminSlider.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Razor\Pages\Vistas del Admin\Categorias.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Razor\Pages\Vistas del Admin\CrudProductos.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Razor\Pages\Vistas del Admin\Cumples.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Razor\Pages\Vistas del Admin\MapaPedidos.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Razor\Pages\Vistas del Admin\Pedidos.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Razor\Pages\Vistas del Usuario\Carrito.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Razor\Pages\Vistas del Usuario\Mercado.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\RazorDeclaration\Pages\Vistas del Usuario\PedidosUsuario.razor.g.cs
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\obj\Debug\net5.0\Razor\Pages\Vistas del Usuario\PedidosUsuario.razor.g.cs

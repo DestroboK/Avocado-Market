@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Avocado_Market.Data;
 using MudBlazor.Services;
 using Syncfusion.Blazor;
-using Avocado_Market.Data;
+using Avocado_Market.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 namespace Avocado_Market
 {
@@ -37,7 +37,8 @@ namespace Avocado_Market
             services.AddMudServices();
             services.AddSyncfusionBlazor();
 
-            
+            //Servicios de acceso a datos
+            services.AddTransient<ICategoriaService, CategoriaService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -96,6 +96,27 @@ using Syncfusion.Blazor.Maps;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 13 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Avocado_Market.Areas.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Avocado_Market.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Avocado_Market.Services;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/about")]
     public partial class About : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -111,6 +132,7 @@ using Syncfusion.Blazor.Maps;
     private bool delimiters = true;
     private bool autocycle = true;
     private Transition transition = Transition.Slide;
+
 
 #line default
 #line hidden

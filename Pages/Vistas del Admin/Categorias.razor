@@ -1,0 +1,60 @@
+﻿@page "/admin/categorias"
+@inject ICategoriaService AccesoDatos
+
+<h1>Categorias</h1>
+
+<EditForm Model="@Cate" OnValidSubmit="Crear">
+    <DataAnnotationsValidator />
+    <MudCard>
+        <MudCardContent>
+            <MudTextField Label="Id" HelperText="Inserte el Id de la categoria a modificar"
+                          @bind-Value="Cate.Id" />
+            <MudTextField Label="Nombre de la categoria" Class="mt-3"
+                          @bind-Value="Cate.Nombre" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Crear</MudButton>
+
+            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" Color="Color.Info" OnClick="Actualizar">Actualizar</MudButton>
+            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="Eliminar">Borrar</MudButton>
+        </MudCardActions>
+    </MudCard>
+</EditForm>
+<MudTable Items="@ListaCategorias" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@_loading" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Nombre</MudTh>
+
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Nr">@context.Id</MudTd>
+        <MudTd DataLabel="Sign">@context.Nombre</MudTd>
+    </RowTemplate>
+</MudTable>
+@code {
+
+    Categoria Cate = new Categoria();
+    List<Categoria> ListaCategorias;
+    private bool _loading = true;
+    protected override async Task OnInitializedAsync()
+    {
+        Cate = await AccesoDatos.Get(1);
+        ListaCategorias = await AccesoDatos.Get();
+        _loading = false;
+    }
+    public async void Crear()
+    {
+        await AccesoDatos.Add(Cate);
+        ListaCategorias = await AccesoDatos.Get();
+    }
+    public async void Eliminar()
+    {
+        await AccesoDatos.Delete(Cate.Id);
+        ListaCategorias = await AccesoDatos.Get();
+    }
+    public async void Actualizar()
+    {
+        await AccesoDatos.Update(Cate);
+        ListaCategorias = await AccesoDatos.Get();
+    }
+}
