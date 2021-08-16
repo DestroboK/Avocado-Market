@@ -2,28 +2,51 @@
     <AuthorizeView>
         <Authorized>
             <MudNavLink Href="/Counter">Counter</MudNavLink>
-                <MudMenu Label="Vistas de usuarios por articulos" Variant="Variant.Filled" Color="Color.Info" Direction="Direction.Right" OffsetX="true" Expanded="false" Style="padding: 2px">
-                    <MudNavLink Href="/mercado">Mercado</MudNavLink>
-                    <MudNavLink Href="/carrito">Mi carrito</MudNavLink>
-                    <MudNavLink Href="/usuario/pedidos">Mis pedidos</MudNavLink>
+            <MudMenu Label="Vistas de usuarios por articulos" Variant="Variant.Filled" Color="Color.Info" Direction="Direction.Right" OffsetX="true" Expanded="false" Style="padding: 2px">
+                <MudNavLink Href="/mercado">Mercado</MudNavLink>
+                <MudNavLink Href="/carrito">Mi carrito</MudNavLink>
+                <MudNavLink Href="/usuario/pedidos">Mis pedidos</MudNavLink>
 
-                </MudMenu>
-                <MudMenu Label="Vistas de administradores" Variant="Variant.Filled" Color="Color.Tertiary" Direction="Direction.Right" OffsetX="true" Expanded="false">
+            </MudMenu>
+            <MudMenu Label="Vistas de administradores" Variant="Variant.Filled" Color="Color.Tertiary" Direction="Direction.Right" OffsetX="true" Expanded="false" Style="padding: 2px">
 
-                    <MudNavLink Href="/admin/clientes">Clientes</MudNavLink>
-                    <MudNavLink Href="/admin/slider">Administrar slider</MudNavLink>
-                    <MudNavLink Href="/admin/categorias">Administrar categorías</MudNavLink>
-                    <MudNavLink Href="/admin/productos">Administrar productos</MudNavLink>
-                    <MudNavLink Href="/admin/pedidos">Administrar pedidos</MudNavLink>
-                    <MudNavLink Href="/admin/mapapedidos">Mapa de pedidos</MudNavLink>
-                    <MudNavLink Href="/admin/cumples">Cumpleaños por mes</MudNavLink>
-
-
-                </MudMenu>
+                <MudNavLink Href="/admin/clientes">Clientes</MudNavLink>
+                <MudNavLink Href="/admin/slider">Administrar slider</MudNavLink>
+                <MudNavLink Href="/admin/categorias">Administrar categorías</MudNavLink>
+                <MudNavLink Href="/admin/productos">Administrar productos</MudNavLink>
+                <MudNavLink Href="/admin/pedidos">Administrar pedidos</MudNavLink>
+                <MudNavLink Href="/admin/mapapedidos">Mapa de pedidos</MudNavLink>
+                <MudNavLink Href="/admin/cumples">Cumpleaños por mes</MudNavLink>
 
 
-                <MudNavLink Href="/about">About</MudNavLink>
-                <MudNavLink Href="/identity/account/logout">Cerrar Sesion</MudNavLink>
+            </MudMenu>
+
+            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Favorite"  Color="Color.Error" FullWidth="true">
+                <MudNavLink Class="ms-2" Href="/about">About</MudNavLink>
+            </MudButton>
+
+            <MudButton Disabled="@_processing" OnClick="ProcessSomething" Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">
+                @if (_processing)
+                {
+                    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                    <MudText Class="ms-2">Procesando</MudText>
+
+                }
+                else
+                {
+                    <MudNavLink Icon="@Icons.Material.Filled.ThumbUp" Href="/identity/account/logout">Cerrar Sesion</MudNavLink>
+                }
+            </MudButton>
+            @code {
+                private bool _processing = false;
+
+                async Task ProcessSomething()
+                {
+                    _processing = true;
+                    await Task.Delay(2000);
+                    _processing = false;
+                }
+            }
         </Authorized>
         <NotAuthorized>
             <MudNavLink Href="/identity/account/login">Iniciar Sesion</MudNavLink>

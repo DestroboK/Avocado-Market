@@ -124,6 +124,22 @@ using Avocado_Market.Services;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 40 "C:\Users\Administrador\Desktop\Avocado-Market\Shared\NavMenu.razor"
+                   
+                private bool _processing = false;
+
+                async Task ProcessSomething()
+                {
+                    _processing = true;
+                    await Task.Delay(2000);
+                    _processing = false;
+                }
+            
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591
