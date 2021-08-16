@@ -2,23 +2,28 @@
     <AuthorizeView>
         <Authorized>
             <MudNavLink Href="/Counter">Counter</MudNavLink>
-            <MudNavGroup Title="Vistas de usuarios" Expanded="false">
-                <MudNavLink Href="/mercado">Mercado</MudNavLink>
-                <MudNavLink Href="/carrito">Mi carrito</MudNavLink>
-                <MudNavLink Href="/usuario/pedidos">Mis pedidos</MudNavLink>
-            </MudNavGroup>
-            <MudNavGroup Title="Vistas de administradores" Expanded="false">
-                <MudNavLink Href="/admin/clientes">Clientes</MudNavLink>
-                <MudNavLink Href="/admin/slider">Administrar slider</MudNavLink>
-                <MudNavLink Href="/admin/categorias">Administrar categorías</MudNavLink>
-                <MudNavLink Href="/admin/productos">Administrar productos</MudNavLink>
-                <MudNavLink Href="/admin/pedidos">Administrar pedidos</MudNavLink>
-                <MudNavLink Href="/admin/mapapedidos">Mapa de pedidos</MudNavLink>
-                <MudNavLink Href="/admin/cumples">Cumpleaños por mes</MudNavLink>
+                <MudMenu Label="Vistas de usuarios por articulos" Variant="Variant.Filled" Color="Color.Info" Direction="Direction.Right" OffsetX="true" Expanded="false" Style="padding: 2px">
+                    <MudNavLink Href="/mercado">Mercado</MudNavLink>
+                    <MudNavLink Href="/carrito">Mi carrito</MudNavLink>
+                    <MudNavLink Href="/usuario/pedidos">Mis pedidos</MudNavLink>
 
-            </MudNavGroup>
-            <MudNavLink Href="/about">About</MudNavLink>
-            <MudNavLink Href="/identity/account/logout">Cerrar Sesion</MudNavLink>
+                </MudMenu>
+                <MudMenu Label="Vistas de administradores" Variant="Variant.Filled" Color="Color.Tertiary" Direction="Direction.Right" OffsetX="true" Expanded="false">
+
+                    <MudNavLink Href="/admin/clientes">Clientes</MudNavLink>
+                    <MudNavLink Href="/admin/slider">Administrar slider</MudNavLink>
+                    <MudNavLink Href="/admin/categorias">Administrar categorías</MudNavLink>
+                    <MudNavLink Href="/admin/productos">Administrar productos</MudNavLink>
+                    <MudNavLink Href="/admin/pedidos">Administrar pedidos</MudNavLink>
+                    <MudNavLink Href="/admin/mapapedidos">Mapa de pedidos</MudNavLink>
+                    <MudNavLink Href="/admin/cumples">Cumpleaños por mes</MudNavLink>
+
+
+                </MudMenu>
+
+
+                <MudNavLink Href="/about">About</MudNavLink>
+                <MudNavLink Href="/identity/account/logout">Cerrar Sesion</MudNavLink>
         </Authorized>
         <NotAuthorized>
             <MudNavLink Href="/identity/account/login">Iniciar Sesion</MudNavLink>
