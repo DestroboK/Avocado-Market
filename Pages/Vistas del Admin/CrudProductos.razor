@@ -1,6 +1,101 @@
 ﻿@page "/admin/productos"
-<h3>CrudProductos</h3>
+@inject IProductoServices AccesoDatos
+@inject ICategoriaService AccesoDatosCat
 
+<h1>Manejo de Productos</h1>
+
+<EditForm Model="@Prod" OnValidSubmit="Crear">
+    <DataAnnotationsValidator />
+    <MudCard>
+        <MudCardContent>
+            <MudTextField Label="Id" HelperText="Id del registro a modificar"
+                          @bind-Value="Prod.Id" />
+            <MudTextField Label="Nombre del producto" Class="mt-3"
+                          @bind-Value="Prod.Nombre" />
+            <MudSelect T="string" Label="Categoria" @bind-Value="Prod.Categoria">
+                @foreach (Categoria cat in ListaCategorias)
+                {
+                    <MudSelectItem Value="@cat.Nombre" />
+                }
+            </MudSelect>
+            <MudNumericField T="double" @bind-Value="@Prod.PrecioUnidad" Label="Precio por unidad" Variant="Variant.Text" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney" />
+            <MudNumericField @bind-Value="@Prod.UnidadesDisponibles" Label="Unidades disponibles" Variant="Variant.Text" Adornment="Adornment.Start" />
+            <MudTextField Label="Nombre del producto" Class="mt-3"
+                          @bind-Value="Prod.UrlImagen" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Crear</MudButton>
+
+            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" Color="Color.Info" OnClick="Actualizar">Actualizar</MudButton>
+            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="Eliminar">Borrar</MudButton>
+            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Search" Color="Color.Info" OnClick="Buscar">Buscar</MudButton>
+        </MudCardActions>
+        <MudDivider/>
+        <MudCard>
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.body1">@Prod.Nombre</MudText>
+                    <MudText Typo="Typo.body2">@Prod.Categoria</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardMedia Image="@Prod.UrlImagen" Height="250" />
+            <MudCardContent>
+                <MudText Typo="Typo.body2">Existen @Prod.UnidadesDisponibles unidades restantes.</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudIconButton Icon="@Icons.Material.Filled.AddShoppingCart" Color="Color.Default">@Prod.PrecioUnidad</MudIconButton>
+            </MudCardActions>
+        </MudCard>
+    </MudCard>
+</EditForm>
+<MudTable Items="@ListaProductos" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@_loading" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Nombre</MudTh>
+        <MudTh>Categoria</MudTh>
+        <MudTh>Precio por unidad</MudTh>
+        <MudTh>Disponibilidad</MudTh>
+        <MudTh>Imagen</MudTh>
+
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Nr">@context.Id</MudTd>
+        <MudTd DataLabel="Sign">@context.Nombre</MudTd>
+        <MudTd DataLabel="Sign">@context.Categoria</MudTd>
+        <MudTd DataLabel="Sign">@context.PrecioUnidad</MudTd>
+        <MudTd DataLabel="Sign">@context.UnidadesDisponibles</MudTd>
+        <MudTd DataLabel="Sign"><MudCard><MudCardMedia Image="@context.UrlImagen" Height="30"/></MudCard></MudTd>
+    </RowTemplate>
+</MudTable>
 @code {
-
+    Producto Prod = new Producto();
+    List<Categoria> ListaCategorias;
+    List<Producto> ListaProductos;
+    private bool _loading = true;
+    protected override async Task OnInitializedAsync()
+    {
+        ListaCategorias = await AccesoDatosCat.Get();
+        ListaProductos = await AccesoDatos.Get();
+        _loading = false;
+    }
+    public async void Crear()
+    {
+        await AccesoDatos.Add(Prod);
+        ListaProductos = await AccesoDatos.Get();
+    }
+    public async void Buscar()
+    {
+        Prod = await AccesoDatos.Get(Prod.Id);
+        ListaProductos = await AccesoDatos.Get();
+    }
+    public async void Eliminar()
+    {
+        await AccesoDatos.Delete(Prod.Id);
+        ListaProductos = await AccesoDatos.Get();
+    }
+    public async void Actualizar()
+    {
+        await AccesoDatos.Update(Prod);
+        ListaProductos = await AccesoDatos.Get();
+    }
 }
