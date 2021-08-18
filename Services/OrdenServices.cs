@@ -11,9 +11,10 @@ namespace Avocado_Market.Services
     {
         Task<List<Orden>> Get();
         Task<Orden> Get(int id);
-        Task<Orden> Add(Orden cate);
+        Task Add(Carrito carrito, List<CarritoItems> ItemsAComprar);
         Task<Orden> Update(Orden cate);
         Task<Orden> Delete(int id);
+        Task<List<Orden>> Get(string correo);
     }
     public class OrdenServices : IOrdenServices
     {
@@ -32,11 +33,30 @@ namespace Avocado_Market.Services
             var OrdenExacta = await _context.Ordenes.FindAsync(id);
             return OrdenExacta;
         }
-        public async Task<Orden> Add(Orden cate)
+        public async Task Add(Carrito carrito, List<CarritoItems> ItemsAComprar)
         {
-            _context.Ordenes.Add(cate);
+            Orden ordenNueva = new Orden();
+            ordenNueva.email = carrito.Email;
+            ordenNueva.Estado = "En proceso";
+            ordenNueva.Latitud = 1;
+            ordenNueva.Longitud = 1.1;
+            ordenNueva.CosteTotal = 0;
+            ordenNueva.Comentario = "Comentario generico 123";
+            foreach(CarritoItems item in ItemsAComprar)
+            {
+                ordenNueva.CosteTotal = ordenNueva.CosteTotal + item.PrecioUnidad;
+                ItemsPedido Items = new ItemsPedido();
+                Items.Nombre = item.Nombre;
+                Items.Orden = ordenNueva;
+                Items.OrdenId = ordenNueva.Id;
+                Items.UrlImagen = item.UrlImagen;
+                Items.Categoria = item.Categoria;
+                Items.PrecioUnidad = item.PrecioUnidad;
+                Items.Unidades = item.Unidades;
+                _context.ItemsOrden.Add(Items);
+            }
+            _context.Ordenes.Add(ordenNueva);
             await _context.SaveChangesAsync();
-            return cate;
         }
         public async Task<Orden> Delete(int id)
         {
@@ -46,6 +66,18 @@ namespace Avocado_Market.Services
             return cate;
         }
 
+
+
+
+
+
+        public async Task<List<Orden>> Get(string correo)
+        {
+            var Ordenes = _context.Ordenes
+                   .Where(b => b.email == correo).ToList();
+            return Ordenes;
+
+        }
 
 
         public async Task<Orden> Update(Orden cate)

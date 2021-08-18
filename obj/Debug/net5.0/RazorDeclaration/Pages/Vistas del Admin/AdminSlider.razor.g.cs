@@ -125,6 +125,19 @@ using Avocado_Market.Services;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 18 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Admin\AdminSlider.razor"
+      
+    //CODIGO PARA HACER QUE ESTA PAGINA SOLO SEA VISIBLE PARA ADMINS. COLOCAR AL INICIO DE PAGINA
+    //@attribute [Authorize(Roles = "Administrador")]//
+    private bool arrows = true;
+    private bool delimiters = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591

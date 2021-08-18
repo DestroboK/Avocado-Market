@@ -3,14 +3,16 @@ using System;
 using Avocado_Market.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Avocado_Market.Migrations
 {
     [DbContext(typeof(UsuarioContext))]
-    partial class UsuarioContextModelSnapshot : ModelSnapshot
+    [Migration("20210818173153_Pedidos")]
+    partial class Pedidos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,7 +105,7 @@ namespace Avocado_Market.Migrations
 
                     b.HasIndex("OrdenId");
 
-                    b.ToTable("ItemsOrden");
+                    b.ToTable("ItemsPedido");
                 });
 
             modelBuilder.Entity("Avocado_Market.Data.Orden", b =>

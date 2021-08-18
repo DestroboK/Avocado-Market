@@ -126,7 +126,7 @@ using Avocado_Market.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 24 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Usuario\Carrito.razor"
+#line 25 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Usuario\Carrito.razor"
        
     Avocado_Market.Data.Carrito MiCarrito;
     [CascadingParameter]
@@ -140,10 +140,15 @@ using Avocado_Market.Services;
         Items = await AccesoCarrito.GetItems(MiCarrito.Id);
     }
 
+    public async void AgregarPedido()
+    {
+        await AccesoOrdenes.Add(MiCarrito, Items);
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOrdenServices AccesoOrdenes { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICarritoServices AccesoCarrito { get; set; }
     }
 }

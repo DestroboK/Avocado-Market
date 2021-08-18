@@ -1,7 +1,8 @@
 ﻿@page "/carrito"
 @inject ICarritoServices AccesoCarrito
+@inject IOrdenServices AccesoOrdenes
 <h1>Carrito de @MiCarrito.Email, Id: @MiCarrito.Id</h1>
-<MudTable Items="@Items" Hover="true" Breakpoint="Breakpoint.Sm" >
+<MudTable Items="@Items" Hover="true" Breakpoint="Breakpoint.Sm">
     <HeaderContent>
         <MudTh>Id</MudTh>
         <MudTh>Nombre</MudTh>
@@ -20,7 +21,7 @@
         <MudTd DataLabel="Sign"><MudCard><MudCardMedia Image="@context.UrlImagen" Height="30" /></MudCard></MudTd>
     </RowTemplate>
 </MudTable>
-
+<MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.ShoppingCart" Size="Size.Large" IconSize="Size.Large" Label="Comprar"  OnClick="AgregarPedido" Class="ma-2" />
 @code {
     Avocado_Market.Data.Carrito MiCarrito;
     [CascadingParameter]
@@ -34,4 +35,8 @@
         Items = await AccesoCarrito.GetItems(MiCarrito.Id);
     }
 
+    public async void AgregarPedido()
+    {
+        await AccesoOrdenes.Add(MiCarrito, Items);
+    }
 }

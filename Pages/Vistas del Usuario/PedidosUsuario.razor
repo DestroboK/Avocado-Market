@@ -1,6 +1,38 @@
 ﻿@page "/usuario/pedidos"
-<h3>PedidosUsuario</h3>
+<h3>Mis pedidos</h3>
+@inject IOrdenServices AccesoOrdenes
+@inject ICarritoServices AccesoCarrito
+<MudTable Items="Ordenes" Hover="true" Breakpoint="Breakpoint.Sm">
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Estado</MudTh>
+        <MudTh>Latitud</MudTh>
+        <MudTh>Longitud</MudTh>
+        <MudTh>Coste Total</MudTh>
+        <MudTh>Comentario</MudTh>
+
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Nr">@context.Id</MudTd>
+        <MudTd DataLabel="Sign">@context.Estado</MudTd>
+        <MudTd DataLabel="Sign">@context.Latitud</MudTd>
+        <MudTd DataLabel="Sign">@context.Longitud</MudTd>
+        <MudTd DataLabel="Sign">@context.CosteTotal</MudTd>
+        <MudTd DataLabel="Sign">@context.Comentario</MudTd>>
+        @*<MudTd DataLabel="Sign"><MudCard><MudCardMedia Image="@context.UrlImagen" Height="30" /></MudCard></MudTd>*@
+    </RowTemplate>
+</MudTable>
 
 @code {
+    List<Orden> Ordenes;
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
+    List<CarritoItems> Items;
+    private AuthenticationState UsuarioLogueado;
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+        Ordenes = await AccesoOrdenes.Get(UsuarioLogueado.User.Identity.Name);
+    }
 
 }

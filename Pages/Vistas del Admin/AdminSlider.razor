@@ -1,6 +1,25 @@
 ﻿@page "/admin/slider"
 <h3>AdminSlider</h3>
+<MudCarousel Style="height:200px;" ShowArrows="@arrows" ShowDelimiters="@delimiters" AutoCycle="@autocycle" TData="object">
+    <MudCarouselItem Transition="transition" Color="@Color.Primary">
+        <MudCard>
+            <MudCardMedia Image="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" Height="250" />
 
-@code {
+        </MudCard>
+    </MudCarouselItem>
+    <MudCarouselItem Transition="transition" Color="@Color.Secondary">
+        <MudCardMedia Image="https://c.tenor.com/zrO4syNz96IAAAAC/kristen-bell-eleanor-shellstrop.gif" Height="250" />
+    </MudCarouselItem>
+    <MudCarouselItem Transition="transition">
+        <MudCardMedia Image="https://itla.edu.do/wp-content/uploads/2021/02/logo-full.png" Height="250" />
+    </MudCarouselItem>
+</MudCarousel>
 
+@code{
+    //CODIGO PARA HACER QUE ESTA PAGINA SOLO SEA VISIBLE PARA ADMINS. COLOCAR AL INICIO DE PAGINA
+    //@attribute [Authorize(Roles = "Administrador")]//
+    private bool arrows = true;
+    private bool delimiters = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
 }

@@ -43,7 +43,7 @@
                 <MudText Typo="Typo.body2">Existen @Prod.UnidadesDisponibles unidades restantes.</MudText>
             </MudCardContent>
             <MudCardActions>
-                <MudIconButton Icon="@Icons.Material.Filled.AddShoppingCart" Color="Color.Default">@Prod.PrecioUnidad</MudIconButton>
+                <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.ShoppingCart" Size="Size.Large" IconSize="Size.Large" Label="@Prod.PrecioUnidad.ToString()" Class="ma-2" />
             </MudCardActions>
         </MudCard>
     </MudCard>
