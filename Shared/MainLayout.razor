@@ -9,10 +9,11 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         My Application
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Inherit" Title="Usuario"/>
-        <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" Title="Cerrar sesion"/>
-        <MudIconButton Icon="@Icons.Material.Filled.Info" Color="Color.Inherit" Title="Acerca De" Link="/about"/>
-        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/DestroboK/Avocado-Market" Title="Repositorio del proyecto"/>
+        <MudText>@UsuarioLogueado.User.Identity.Name</MudText>
+        <MudIconButton Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Inherit" Title="Usuario" />
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" Title="Cerrar sesion" />
+        <MudIconButton Icon="@Icons.Material.Filled.Info" Color="Color.Inherit" Title="Acerca De" Link="/about" />
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/DestroboK/Avocado-Market" Title="Repositorio del proyecto" />
     </MudAppBar>
     <MudDrawer @bind-Open="@_drawerOpen">
         <NavMenu/>
@@ -25,6 +26,14 @@
 </MudLayout>
 
 @code {
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
+
+    private AuthenticationState UsuarioLogueado;
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+    }
     bool _drawerOpen = true;
 
     void DrawerToggle()

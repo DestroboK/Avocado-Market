@@ -54,3 +54,14 @@
         </NotAuthorized>
     </AuthorizeView>
 </MudNavMenu>
+
+@code{
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
+
+    private AuthenticationState UsuarioLogueado;
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+    }
+}

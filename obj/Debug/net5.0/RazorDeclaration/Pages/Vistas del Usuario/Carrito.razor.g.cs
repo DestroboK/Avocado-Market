@@ -125,6 +125,25 @@ using Avocado_Market.Services;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 23 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Usuario\Carrito.razor"
+       
+    Avocado_Market.Data.Carrito MiCarrito;
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
+
+    private AuthenticationState UsuarioLogueado;
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+        MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
+    }
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICarritoServices AccesoCarrito { get; set; }
     }
 }
 #pragma warning restore 1591

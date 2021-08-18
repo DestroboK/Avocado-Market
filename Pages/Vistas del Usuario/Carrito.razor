@@ -1,6 +1,35 @@
 ﻿@page "/carrito"
-<h3>Carrito</h3>
+@inject ICarritoServices AccesoCarrito
+<h1>Carrito de @MiCarrito.Email, Id: @MiCarrito.Id</h1>
+<MudTable Items="@MiCarrito.Productos" Hover="true" Breakpoint="Breakpoint.Sm" >
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Nombre</MudTh>
+        <MudTh>Categoria</MudTh>
+        <MudTh>Precio por unidad</MudTh>
+        <MudTh>Disponibilidad</MudTh>
+        <MudTh>Imagen</MudTh>
 
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Nr">@context.Id</MudTd>
+        <MudTd DataLabel="Sign">@context.Nombre</MudTd>
+        <MudTd DataLabel="Sign">@context.Categoria</MudTd>
+        <MudTd DataLabel="Sign">@context.PrecioUnidad</MudTd>
+        <MudTd DataLabel="Sign">@context.UnidadesDisponibles</MudTd>
+        <MudTd DataLabel="Sign"><MudCard><MudCardMedia Image="@context.UrlImagen" Height="30" /></MudCard></MudTd>
+    </RowTemplate>
+</MudTable>
 @code {
+    Avocado_Market.Data.Carrito MiCarrito;
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
+
+    private AuthenticationState UsuarioLogueado;
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+        MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
+    }
 
 }

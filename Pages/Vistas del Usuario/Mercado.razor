@@ -1,6 +1,90 @@
 ﻿@page "/mercado"
-<h3>Mercado</h3>
+@inject IProductoServices AccesoDatos
+@inject ICarritoServices AccesoCarrito
 
+
+<h1>Mercado</h1>
+
+@foreach (Producto Prod in ListaProductos)
+{
+    <MudCard Style="max-width:30%">
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.body1">@Prod.Nombre</MudText>
+                <MudText Typo="Typo.body2">@Prod.Categoria</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardMedia Image="@Prod.UrlImagen" Height="250" />
+        <MudCardContent>
+            <MudText Typo="Typo.body2">Existen @Prod.UnidadesDisponibles unidades restantes.</MudText>
+        </MudCardContent>
+        <MudCardActions>
+            <MudIconButton Icon="@Icons.Material.Filled.AddShoppingCart" Color="Color.Default" @onclick="()=> Seleccionar(Prod)">@Prod.PrecioUnidad</MudIconButton>
+        </MudCardActions>
+    </MudCard>
+}
+
+<MudButton Variant="Variant.Text" OnClick="@(() => OpenDrawer(Anchor.Bottom))">Bottom</MudButton>
+
+<MudDrawer @bind-Open="@open" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
+    <MudDrawerHeader>
+        <MudIconButton Icon="@Icons.Material.Filled.ShoppingCart" Color="Color.Inherit" Title="Ir a mi carrito" Link="/carrito">Mi Carrito</MudIconButton>
+        <MudText Typo="Typo.h6">Mi Carrito</MudText>
+    </MudDrawerHeader>
+    <MudNavMenu>
+        @foreach (Producto p in ListaProductos)
+        {
+            <MudText>@p.Nombre</MudText>
+        }
+        <MudNavLink Match="NavLinkMatch.All">Store</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All">Library</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All">Community</MudNavLink>
+    </MudNavMenu>
+</MudDrawer>
+<p>Usuario: @UsuarioLogueado.User.Identity.Name</p>
+<p>Nombre del objeto: @Produ.Nombre</p>
+<p>Url: @Produ.UrlImagen</p>
+<p>El carrito de @MiCarrito.Email esta funcionando.</p>
 @code {
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
 
+    private AuthenticationState UsuarioLogueado;
+
+    Producto Produ = new Producto();
+    List<Producto> ListaProductos;
+    Avocado_Market.Data.Carrito MiCarrito;
+    private bool _loading = true;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+        MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
+        ListaProductos = await AccesoDatos.Get();
+        _loading = false;
+    }
+    public async void Seleccionar(Producto temp)
+    {
+        MiCarrito.Productos.Add(temp);
+        await AccesoCarrito.Update(MiCarrito);
+        ListaProductos = await AccesoDatos.Get();
+    }
+    public async void Actualizar()
+    {
+        await AccesoDatos.Update(Produ);
+        ListaProductos = await AccesoDatos.Get();
+    }
+
+
+
+    bool open;
+    Anchor anchor;
+
+    void OpenDrawer(Anchor anchor)
+    {
+        open = true;
+        this.anchor = anchor;
+    }
 }

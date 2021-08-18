@@ -125,8 +125,16 @@ using Avocado_Market.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 27 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Shared\MainLayout.razor"
+#line 28 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Shared\MainLayout.razor"
        
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
+
+    private AuthenticationState UsuarioLogueado;
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+    }
     bool _drawerOpen = true;
 
     void DrawerToggle()

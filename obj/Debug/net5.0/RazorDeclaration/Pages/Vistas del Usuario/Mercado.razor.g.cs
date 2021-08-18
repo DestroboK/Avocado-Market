@@ -125,6 +125,56 @@ using Avocado_Market.Services;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 48 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Usuario\Mercado.razor"
+       
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
+
+    private AuthenticationState UsuarioLogueado;
+
+    Producto Produ = new Producto();
+    List<Producto> ListaProductos;
+    Avocado_Market.Data.Carrito MiCarrito;
+    private bool _loading = true;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+        MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
+        ListaProductos = await AccesoDatos.Get();
+        _loading = false;
+    }
+    public async void Seleccionar(Producto temp)
+    {
+        MiCarrito.Productos.Add(temp);
+        await AccesoCarrito.Update(MiCarrito);
+        ListaProductos = await AccesoDatos.Get();
+    }
+    public async void Actualizar()
+    {
+        await AccesoDatos.Update(Produ);
+        ListaProductos = await AccesoDatos.Get();
+    }
+
+
+
+    bool open;
+    Anchor anchor;
+
+    void OpenDrawer(Anchor anchor)
+    {
+        open = true;
+        this.anchor = anchor;
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICarritoServices AccesoCarrito { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IProductoServices AccesoDatos { get; set; }
     }
 }
 #pragma warning restore 1591

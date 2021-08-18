@@ -12,7 +12,6 @@ namespace Avocado_Market.Data
         public string Nombre { get; set; }
         public string Categoria { get; set; }
         public double PrecioUnidad { get; set; }
-        public byte[] Imagen { get; set; }
         public string UrlImagen { get; set; }
         public int UnidadesDisponibles { get; set; }
     }

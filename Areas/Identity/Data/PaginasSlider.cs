@@ -10,7 +10,6 @@ namespace Avocado_Market.Data
         [Key]
         public int Id { get; set; }
         public string Titulo { get; set; }
-        public byte[] Imagen { get; set; }
         public string UrlImagen { get; set; }
     }
 }

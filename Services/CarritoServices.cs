@@ -9,8 +9,8 @@ namespace Avocado_Market.Services
 {
     public interface ICarritoServices
     {
-        Task<List<Carrito>> Get();
-        Task<Carrito> Get(int id);
+        Task<Carrito> Get(string correo);
+        //Task<Carrito> Get(int id);
         Task<Carrito> Add(Carrito cate);
         Task<Carrito> Update(Carrito cate);
         Task<Carrito> Delete(int id);
@@ -22,16 +22,29 @@ namespace Avocado_Market.Services
         {
             _context = context;
         }
-        public async Task<List<Carrito>> Get()
+        public async Task<Carrito> Get(string correo)
         {
-            return await _context.Carrito.ToListAsync();
+             Carrito CarritoExacto = _context.Carrito
+                    .Where(b => b.Email == correo)
+                    .FirstOrDefault();
+
+            if (CarritoExacto == null)
+                {
+                    Carrito Nuevo = new Carrito();
+                    Nuevo.Email = correo;
+                    _context.Carrito.Add(Nuevo);
+                    await _context.SaveChangesAsync();
+                    return Nuevo;
+                }
+            return CarritoExacto;
+
         }
 
-        public async Task<Carrito> Get(int id)
-        {
-            var CarritoExacta = await _context.Carrito.FindAsync(id);
-            return CarritoExacta;
-        }
+        //public async Task<Carrito> Get(int id)
+        //{
+            //var CarritoExacta = await _context.Carrito.FindAsync(id);
+            //return CarritoExacta;
+        //}
         public async Task<Carrito> Add(Carrito cate)
         {
             _context.Carrito.Add(cate);

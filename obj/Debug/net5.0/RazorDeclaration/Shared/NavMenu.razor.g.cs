@@ -140,6 +140,21 @@ using Avocado_Market.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 58 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Shared\NavMenu.razor"
+      
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
+
+    private AuthenticationState UsuarioLogueado;
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+    }
+
+#line default
+#line hidden
+#nullable disable
     }
 }
 #pragma warning restore 1591
