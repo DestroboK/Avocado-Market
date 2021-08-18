@@ -3,14 +3,16 @@ using System;
 using Avocado_Market.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Avocado_Market.Migrations
 {
     [DbContext(typeof(UsuarioContext))]
-    partial class UsuarioContextModelSnapshot : ModelSnapshot
+    [Migration("20210818025052_Lista")]
+    partial class Lista
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,37 +30,6 @@ namespace Avocado_Market.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Carrito");
-                });
-
-            modelBuilder.Entity("Avocado_Market.Data.CarritoItems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CarritoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Categoria")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nombre")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("PrecioUnidad")
-                        .HasColumnType("REAL");
-
-                    b.Property<int>("Unidades")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UrlImagen")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarritoId");
-
-                    b.ToTable("ItemsCarrito");
                 });
 
             modelBuilder.Entity("Avocado_Market.Data.Categoria", b =>
@@ -96,15 +67,13 @@ namespace Avocado_Market.Migrations
                     b.Property<double>("Longitud")
                         .HasColumnType("REAL");
 
-                    b.Property<int?>("ProductosId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("MyProperty")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("email")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductosId");
 
                     b.ToTable("Ordenes");
                 });
@@ -348,26 +317,6 @@ namespace Avocado_Market.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Avocado_Market.Data.CarritoItems", b =>
-                {
-                    b.HasOne("Avocado_Market.Data.Carrito", "Carrito")
-                        .WithMany("Items")
-                        .HasForeignKey("CarritoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Carrito");
-                });
-
-            modelBuilder.Entity("Avocado_Market.Data.Orden", b =>
-                {
-                    b.HasOne("Avocado_Market.Data.Carrito", "Productos")
-                        .WithMany()
-                        .HasForeignKey("ProductosId");
-
-                    b.Navigation("Productos");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -417,11 +366,6 @@ namespace Avocado_Market.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Avocado_Market.Data.Carrito", b =>
-                {
-                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

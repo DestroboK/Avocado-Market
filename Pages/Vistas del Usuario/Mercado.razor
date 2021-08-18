@@ -44,6 +44,10 @@
 <p>Usuario: @UsuarioLogueado.User.Identity.Name</p>
 <p>Nombre del objeto: @Produ.Nombre</p>
 <p>Url: @Produ.UrlImagen</p>
+<p>id: @Produ.Id</p>
+<p>cate: @Produ.Categoria</p>
+<p>cate: @Produ.UnidadesDisponibles</p>
+<p>cate: @Produ.PrecioUnidad</p>
 <p>El carrito de @MiCarrito.Email esta funcionando.</p>
 @code {
     [CascadingParameter]
@@ -57,7 +61,6 @@
     private bool _loading = true;
 
 
-
     protected override async Task OnInitializedAsync()
     {
         UsuarioLogueado = await EstadoLogin;
@@ -67,8 +70,8 @@
     }
     public async void Seleccionar(Producto temp)
     {
-        MiCarrito.Productos.Add(temp);
-        await AccesoCarrito.Update(MiCarrito);
+        await AccesoCarrito.AgregarItem(temp, MiCarrito);
+        MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
         ListaProductos = await AccesoDatos.Get();
     }
     public async void Actualizar()

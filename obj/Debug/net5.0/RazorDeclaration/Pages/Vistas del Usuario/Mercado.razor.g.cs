@@ -126,7 +126,7 @@ using Avocado_Market.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 48 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Usuario\Mercado.razor"
+#line 52 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Usuario\Mercado.razor"
        
     [CascadingParameter]
     private Task<AuthenticationState> EstadoLogin { get; set; }
@@ -139,7 +139,6 @@ using Avocado_Market.Services;
     private bool _loading = true;
 
 
-
     protected override async Task OnInitializedAsync()
     {
         UsuarioLogueado = await EstadoLogin;
@@ -149,8 +148,8 @@ using Avocado_Market.Services;
     }
     public async void Seleccionar(Producto temp)
     {
-        MiCarrito.Productos.Add(temp);
-        await AccesoCarrito.Update(MiCarrito);
+        await AccesoCarrito.AgregarItem(temp, MiCarrito);
+        MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
         ListaProductos = await AccesoDatos.Get();
     }
     public async void Actualizar()

@@ -14,7 +14,8 @@ namespace Avocado_Market.Data
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Orden> Ordenes { get; set; }
         public DbSet<PaginasSlider> PaginasSlider { get; set; }
-
+        public DbSet<CarritoItems> ItemsCarrito { get; set; }
+        
         public DbSet<Producto> Productos { get; set; }
         public UsuarioContext(DbContextOptions<UsuarioContext> options)
             : base(options)

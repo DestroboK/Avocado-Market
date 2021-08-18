@@ -10,6 +10,6 @@ namespace Avocado_Market.Data
         [Key]
         public int Id { get; set; }
         public string Email { get; set; }
-        public List<Producto> Productos { get; set; }
+        public List<CarritoItems> Items { get; set; }
     }
 }

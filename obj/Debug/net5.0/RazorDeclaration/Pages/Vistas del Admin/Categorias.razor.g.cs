@@ -134,7 +134,6 @@ using Avocado_Market.Services;
     private bool _loading = true;
     protected override async Task OnInitializedAsync()
     {
-        Cate = await AccesoDatos.Get(1);
         ListaCategorias = await AccesoDatos.Get();
         _loading = false;
     }
