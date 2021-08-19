@@ -139,23 +139,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 40 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Shared\NavMenu.razor"
-                   
-                private bool _processing = false;
-
-                async Task ProcessSomething()
-                {
-                    _processing = true;
-                    await Task.Delay(2000);
-                    _processing = false;
-                }
-            
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 58 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Shared\NavMenu.razor"
+#line 55 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Shared\NavMenu.razor"
       
     [CascadingParameter]
     private Task<AuthenticationState> EstadoLogin { get; set; }
@@ -164,6 +148,14 @@ using Radzen.Blazor;
     protected override async Task OnInitializedAsync()
     {
         UsuarioLogueado = await EstadoLogin;
+    }
+    private bool _processing = false;
+
+    async Task ProcessSomething()
+    {
+        _processing = true;
+        await Task.Delay(2000);
+        _processing = false;
     }
 
 #line default

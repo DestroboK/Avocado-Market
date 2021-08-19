@@ -131,6 +131,13 @@ using Radzen.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Vistas del Admin\AdminSlider.razor"
+           [Authorize(Roles = "Administrador")]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/admin/slider")]
     public partial class AdminSlider : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -140,7 +147,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 18 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Vistas del Admin\AdminSlider.razor"
+#line 19 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Vistas del Admin\AdminSlider.razor"
       
     //CODIGO PARA HACER QUE ESTA PAGINA SOLO SEA VISIBLE PARA ADMINS. COLOCAR AL INICIO DE PAGINA
     //@attribute [Authorize(Roles = "Administrador")]//

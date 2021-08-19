@@ -131,6 +131,13 @@ using Radzen.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Vistas del Admin\CrudProductos.razor"
+           [Authorize(Roles = "Administrador")]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/admin/productos")]
     public partial class CrudProductos : Microsoft.AspNetCore.Components.ComponentBase
     {

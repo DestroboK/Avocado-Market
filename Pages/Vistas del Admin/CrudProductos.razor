@@ -1,7 +1,7 @@
 ﻿@page "/admin/productos"
 @inject IProductoServices AccesoDatos
 @inject ICategoriaService AccesoDatosCat
-
+@attribute [Authorize(Roles = "Administrador")]
 <h1>Manejo de Productos</h1>
 
 <EditForm Model="@Prod" OnValidSubmit="Crear">
@@ -25,12 +25,12 @@
         </MudCardContent>
         <MudCardActions>
             <MudButton ButtonType="MudBlazor.ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Crear</MudButton>
-        
+
             <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" Color="Color.Info" OnClick="Actualizar">Actualizar</MudButton>
             <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="Eliminar">Borrar</MudButton>
             <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Search" Color="Color.Info" OnClick="Buscar">Buscar</MudButton>
         </MudCardActions>
-        <MudDivider/>
+        <MudDivider />
         <MudCard>
             <MudCardHeader>
                 <CardHeaderContent>
@@ -64,7 +64,7 @@
         <MudTd DataLabel="Sign">@context.Categoria</MudTd>
         <MudTd DataLabel="Sign">@context.PrecioUnidad</MudTd>
         <MudTd DataLabel="Sign">@context.UnidadesDisponibles</MudTd>
-        <MudTd DataLabel="Sign"><MudCard><MudCardMedia Image="@context.UrlImagen" Height="30"/></MudCard></MudTd>
+        <MudTd DataLabel="Sign"><MudCard><MudCardMedia Image="@context.UrlImagen" Height="30" /></MudCard></MudTd>
     </RowTemplate>
 </MudTable>
 @code {

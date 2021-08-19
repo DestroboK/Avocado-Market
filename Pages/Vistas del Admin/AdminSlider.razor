@@ -1,4 +1,5 @@
-﻿@page "/admin/slider"
+﻿@page  "/admin/slider"
+@attribute [Authorize(Roles = "Administrador")]
 <h3>AdminSlider</h3>
 <MudCarousel Style="height:200px;" ShowArrows="@arrows" ShowDelimiters="@delimiters" AutoCycle="@autocycle" TData="object">
     <MudCarouselItem Transition="transition" Color="@Color.Primary">

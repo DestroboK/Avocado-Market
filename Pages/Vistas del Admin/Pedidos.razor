@@ -1,5 +1,6 @@
 ﻿@page "/admin/pedidos"
 @inject IOrdenServices AccesoOrdenes
+@attribute [Authorize(Roles = "Administrador")]
 <h3>Todos los pedidos emitidos..</h3>
 <MudTable Items="Ordenes" Hover="true" Breakpoint="Breakpoint.Sm">
     <HeaderContent>

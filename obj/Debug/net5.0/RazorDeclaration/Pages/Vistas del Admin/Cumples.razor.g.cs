@@ -131,6 +131,13 @@ using Radzen.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 2 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
+           [Authorize(Roles = "Administrador")]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/admin/cumples")]
     public partial class Cumples : Microsoft.AspNetCore.Components.ComponentBase
     {

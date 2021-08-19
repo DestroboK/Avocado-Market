@@ -1,7 +1,8 @@
 ﻿@page "/admin/clientes"
 @inject IUsuarioService AccesoUsuarios
 @using Microsoft.AspNetCore.Identity;
-<h3>AdminClientes</h3>
+@attribute [Authorize(Roles = "Administrador")]
+<h3>Administrar privilegios de las cuentas</h3>
 <MudTable Items="@Usuarios" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
     <HeaderContent>
         <MudTh>Id</MudTh>
@@ -22,7 +23,7 @@
                 else
                 {
                     <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="(() => QuitarAdmin(context.Id))">Quitar privilegio</MudButton>
-                }                
+                }
             }
             else if (UsuarioEsAdmin(context) == false)
             {
@@ -33,7 +34,7 @@
 </MudTable>
 
 
-@code {    
+@code {
     [CascadingParameter]
     private Task<AuthenticationState> EstadoLogin { get; set; }
     private readonly UserManager<IdentityUser> userManager;

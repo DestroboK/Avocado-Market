@@ -138,6 +138,13 @@ using Microsoft.AspNetCore.Identity;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Vistas del Admin\AdminClientes.razor"
+           [Authorize(Roles = "Administrador")]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/admin/clientes")]
     public partial class AdminClientes : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -147,8 +154,8 @@ using Microsoft.AspNetCore.Identity;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 36 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Vistas del Admin\AdminClientes.razor"
-           
+#line 37 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Vistas del Admin\AdminClientes.razor"
+       
     [CascadingParameter]
     private Task<AuthenticationState> EstadoLogin { get; set; }
     private readonly UserManager<IdentityUser> userManager;

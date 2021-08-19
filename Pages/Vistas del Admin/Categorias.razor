@@ -1,6 +1,6 @@
 ﻿@page "/admin/categorias"
 @inject ICategoriaService AccesoDatos
-
+@attribute [Authorize(Roles = "Administrador")]
 <h1>Categorias</h1>
 
 <EditForm Model="@Cate" OnValidSubmit="Crear">

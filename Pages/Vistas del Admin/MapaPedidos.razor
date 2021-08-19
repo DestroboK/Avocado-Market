@@ -1,5 +1,6 @@
 ﻿@page "/admin/mapapedidos"
 @inject IOrdenServices AccesoOrdenes
+@attribute [Authorize(Roles = "Administrador")]
 <h3>Mapa con todos los pedidos</h3>
 <RadzenGoogleMap style="height: 500px; width: 90%" Zoom=3 Center=@(new GoogleMapPosition() { Lat = 42.6977, Lng = 23.3219 })>
     <Markers>
@@ -18,13 +19,13 @@
                 <RadzenGoogleMapMarker Label="@item.Estado" Position=@(new GoogleMapPosition() { Lat = @item.Latitud, Lng = @item.Longitud }) />
             }
 
-           
+
         }
     </Markers>
 </RadzenGoogleMap>
-<MudSwitch @bind-Checked="@Proce"  Color="Color.Primary" Label="Pedidos en proceso" />
+<MudSwitch @bind-Checked="@Proce" Color="Color.Primary" Label="Pedidos en proceso" />
 <MudSwitch @bind-Checked="@Env" Color="Color.Primary" Label="Pedidos enviados" />
-<MudSwitch @bind-Checked="@Comp"  Color="Color.Primary" Label="Pedidos completados" />
+<MudSwitch @bind-Checked="@Comp" Color="Color.Primary" Label="Pedidos completados" />
 
 @code {
     List<Orden> Ordenes;

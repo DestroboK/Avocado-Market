@@ -1,36 +1,24 @@
 @page "/"
-@using Avocado_Market.Data;
+<center>
+    <MudText Typo="Typo.h1">Avocado Market</MudText>
+    <MudCarousel Style="height:200px;" ShowArrows="@arrows" ShowDelimiters="@delimiters" AutoCycle="@autocycle" TData="object">
+        <MudCarouselItem Transition="transition" Color="@Color.Primary">
+            <MudCard>
+                <MudCardMedia Image="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" Height="250" />
 
-<MudCarousel Style="height:200px;" ShowArrows="@arrows" ShowDelimiters="@delimiters" AutoCycle="@autocycle" TData="object">
-    <MudCarouselItem Transition="transition" Color="@Color.Primary">
-        <MudCard>
-            <MudCardMedia Image="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" Height="250" />
-
-        </MudCard>
-    </MudCarouselItem>
-    <MudCarouselItem Transition="transition" Color="@Color.Secondary">
-        <MudCardMedia Image="https://c.tenor.com/zrO4syNz96IAAAAC/kristen-bell-eleanor-shellstrop.gif" Height="250" />
-    </MudCarouselItem>
-    <MudCarouselItem Transition="transition">
-        <MudCardMedia Image="https://itla.edu.do/wp-content/uploads/2021/02/logo-full.png" Height="250" />
-    </MudCarouselItem>
-</MudCarousel>
-
-
-
-    <SfMaps>
-        <MapsTitleSettings Text="Team aguacate esta trabajando...">
-
-        </MapsTitleSettings>
-        <MapsLayers>
-            <MapsLayer ShapeData='new {dataOptions= "https://cdn.syncfusion.com/maps/map-data/world-map.json"}' TValue="string">
-            </MapsLayer>
-        </MapsLayers>
-    </SfMaps>
+            </MudCard>
+        </MudCarouselItem>
+        <MudCarouselItem Transition="transition" Color="@Color.Secondary">
+            <MudCardMedia Image="https://c.tenor.com/zrO4syNz96IAAAAC/kristen-bell-eleanor-shellstrop.gif" Height="250" />
+        </MudCarouselItem>
+        <MudCarouselItem Transition="transition">
+            <MudCardMedia Image="https://itla.edu.do/wp-content/uploads/2021/02/logo-full.png" Height="250" />
+        </MudCarouselItem>
+    </MudCarousel>
+</center>
 
 @code{
-    //CODIGO PARA HACER QUE ESTA PAGINA SOLO SEA VISIBLE PARA ADMINS. COLOCAR AL INICIO DE PAGINA
-    //@attribute [Authorize(Roles = "Administrador")]//
+   
     private bool arrows = true;
     private bool delimiters = true;
     private bool autocycle = true;

@@ -131,6 +131,13 @@ using Radzen.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Vistas del Admin\Categorias.razor"
+           [Authorize(Roles = "Administrador")]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/admin/categorias")]
     public partial class Categorias : Microsoft.AspNetCore.Components.ComponentBase
     {

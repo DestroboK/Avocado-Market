@@ -1,27 +1,14 @@
 ﻿<MudNavMenu>
     <AuthorizeView>
         <Authorized>
-            <MudNavLink Href="/Counter">Counter</MudNavLink>
             <MudMenu Label="Vistas de usuarios por articulos" Variant="Variant.Filled" Color="Color.Info" Direction="Direction.Right" OffsetX="true" Expanded="false" Style="padding: 2px">
                 <MudNavLink Href="/mercado">Mercado</MudNavLink>
                 <MudNavLink Href="/carrito">Mi carrito</MudNavLink>
                 <MudNavLink Href="/usuario/pedidos">Mis pedidos</MudNavLink>
 
             </MudMenu>
-            <MudMenu Label="Vistas de administradores" Variant="Variant.Filled" Color="Color.Tertiary" Direction="Direction.Right" OffsetX="true" Expanded="false" Style="padding: 2px">
 
-                <MudNavLink Href="/admin/clientes">Clientes</MudNavLink>
-                <MudNavLink Href="/admin/slider">Administrar slider</MudNavLink>
-                <MudNavLink Href="/admin/categorias">Administrar categorías</MudNavLink>
-                <MudNavLink Href="/admin/productos">Administrar productos</MudNavLink>
-                <MudNavLink Href="/admin/pedidos">Administrar pedidos</MudNavLink>
-                <MudNavLink Href="/admin/mapapedidos">Mapa de pedidos</MudNavLink>
-                <MudNavLink Href="/admin/cumples">Cumpleaños por mes</MudNavLink>
-
-
-            </MudMenu>
-
-            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Favorite"  Color="Color.Error" FullWidth="true">
+            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Favorite" Color="Color.Error" FullWidth="true">
                 <MudNavLink Class="ms-2" Href="/about">About</MudNavLink>
             </MudButton>
 
@@ -37,20 +24,30 @@
                     <MudNavLink Icon="@Icons.Material.Filled.ThumbUp" Href="/identity/account/logout">Cerrar Sesion</MudNavLink>
                 }
             </MudButton>
-            @code {
-                private bool _processing = false;
 
-                async Task ProcessSomething()
-                {
-                    _processing = true;
-                    await Task.Delay(2000);
-                    _processing = false;
-                }
-            }
         </Authorized>
         <NotAuthorized>
             <MudNavLink Href="/identity/account/login">Iniciar Sesion</MudNavLink>
             <MudNavLink Href="/about">About</MudNavLink>
+        </NotAuthorized>
+    </AuthorizeView>
+    <MudSpacer />
+    <AuthorizeView Roles="Administrador">
+        <Authorized>
+            <MudMenu Label="Configuración" Variant="Variant.Filled" Color="Color.Tertiary" Direction="Direction.Right" OffsetX="true" Expanded="false" Style="padding: 2px">
+
+                <MudNavLink Href="/admin/clientes">Clientes</MudNavLink>
+                <MudNavLink Href="/admin/slider">Administrar slider</MudNavLink>
+                <MudNavLink Href="/admin/categorias">Administrar categorías</MudNavLink>
+                <MudNavLink Href="/admin/productos">Administrar productos</MudNavLink>
+                <MudNavLink Href="/admin/pedidos">Administrar pedidos</MudNavLink>
+                <MudNavLink Href="/admin/mapapedidos">Mapa de pedidos</MudNavLink>
+                <MudNavLink Href="/admin/cumples">Cumpleaños por mes</MudNavLink>
+
+
+            </MudMenu>
+        </Authorized>
+        <NotAuthorized>
         </NotAuthorized>
     </AuthorizeView>
 </MudNavMenu>
@@ -63,5 +60,13 @@
     protected override async Task OnInitializedAsync()
     {
         UsuarioLogueado = await EstadoLogin;
+    }
+    private bool _processing = false;
+
+    async Task ProcessSomething()
+    {
+        _processing = true;
+        await Task.Delay(2000);
+        _processing = false;
     }
 }

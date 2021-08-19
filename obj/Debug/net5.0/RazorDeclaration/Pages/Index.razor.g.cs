@@ -104,6 +104,13 @@ using Avocado_Market.Areas.Identity;
 #line hidden
 #nullable disable
 #nullable restore
+#line 14 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\_Imports.razor"
+using Avocado_Market.Data;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 15 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\_Imports.razor"
 using Avocado_Market.Services;
 
@@ -124,13 +131,6 @@ using Radzen.Blazor;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 2 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Index.razor"
-using Avocado_Market.Data;
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -140,10 +140,9 @@ using Avocado_Market.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Index.razor"
+#line 20 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Index.razor"
       
-    //CODIGO PARA HACER QUE ESTA PAGINA SOLO SEA VISIBLE PARA ADMINS. COLOCAR AL INICIO DE PAGINA
-    //@attribute [Authorize(Roles = "Administrador")]//
+   
     private bool arrows = true;
     private bool delimiters = true;
     private bool autocycle = true;
