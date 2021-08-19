@@ -1,7 +1,67 @@
 ﻿@page "/admin/clientes"
-
+@inject IUsuarioService AccesoUsuarios
+@using Microsoft.AspNetCore.Identity;
 <h3>AdminClientes</h3>
+<MudTable Items="@Usuarios" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Nombre</MudTh>
 
-@code {
 
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Nr">@context.Id</MudTd>
+        <MudTd DataLabel="Sign">@context.Email</MudTd>
+        <MudTd DataLabel="Sign">
+            @if (UsuarioEsAdmin(context) == true)
+            {
+                if (context.Email == UsuarioLogueado.User.Identity.Name)
+                {
+                    <MudButton Variant="Variant.Filled" Disabled="true" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Info" OnClick="(() => QuitarAdmin(context.Id))">Usted ya es admin</MudButton>
+                }
+                else
+                {
+                    <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="(() => QuitarAdmin(context.Id))">Quitar privilegio</MudButton>
+                }                
+            }
+            else if (UsuarioEsAdmin(context) == false)
+            {
+                <MudButton ButtonType="MudBlazor.ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="(() => DarAdmin(context.Id))">Promover a Admin</MudButton>
+            }
+        </MudTd>
+    </RowTemplate>
+</MudTable>
+
+
+@code {    
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
+    private readonly UserManager<IdentityUser> userManager;
+    List<IdentityUser> Usuarios;
+    private AuthenticationState UsuarioLogueado;
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+        Usuarios = AccesoUsuarios.Get();
+    }
+    public bool UsuarioEsAdmin(IdentityUser usuario)
+    {
+
+        bool EsAdmin = AccesoUsuarios.EsAdmin(usuario).Result;
+
+        return EsAdmin;
+    }
+
+
+    public async Task DarAdmin(string usuario)
+    {
+        await AccesoUsuarios.DarAdmin(usuario);
+        Usuarios = AccesoUsuarios.Get();
+    }
+
+    public async Task QuitarAdmin(string usuario)
+    {
+        await AccesoUsuarios.QuitarAdmin(usuario);
+        Usuarios = AccesoUsuarios.Get();
+    }
 }

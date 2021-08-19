@@ -43,6 +43,7 @@ namespace Avocado_Market
             services.AddTransient<IProductoServices, ProductoServices>();
             services.AddTransient<IServicioSlider, ServicioSlider>();
             services.AddTransient<ICarritoServices, CarritoServices>();
+            services.AddTransient<IUsuarioService, UsuarioService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
