@@ -803,3 +803,5 @@ C:\Users\Administrador\Desktop\Avocado-Market\obj\Debug\net5.0\Avocado Market.dl
 C:\Users\Administrador\Desktop\Avocado-Market\obj\Debug\net5.0\ref\Avocado Market.dll
 C:\Users\Administrador\Desktop\Avocado-Market\obj\Debug\net5.0\Avocado Market.pdb
 C:\Users\Administrador\Desktop\Avocado-Market\obj\Debug\net5.0\Avocado Market.genruntimeconfig.cache
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\bin\Debug\net5.0\Radzen.Blazor.dll
+C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\bin\Debug\net5.0\System.Linq.Dynamic.Core.dll

@@ -41,17 +41,9 @@
         <MudNavLink Match="NavLinkMatch.All">Community</MudNavLink>
     </MudNavMenu>
 </MudDrawer>
-<p>Usuario: @UsuarioLogueado.User.Identity.Name</p>
-<p>Nombre del objeto: @Produ.Nombre</p>
-<p>Url: @Produ.UrlImagen</p>
-<p>id: @Produ.Id</p>
-<p>cate: @Produ.Categoria</p>
-<p>cate: @Produ.UnidadesDisponibles</p>
-<p>cate: @Produ.PrecioUnidad</p>
-<p>El carrito de @MiCarrito.Email esta funcionando.</p>
 @code {
-    [CascadingParameter]
-    private Task<AuthenticationState> EstadoLogin { get; set; }
+        [CascadingParameter]
+        private Task<AuthenticationState> EstadoLogin { get; set; }
 
     private AuthenticationState UsuarioLogueado;
 

@@ -117,6 +117,20 @@ using Avocado_Market.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 16 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Radzen;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Radzen.Blazor;
+
+#line default
+#line hidden
+#nullable disable
     public partial class SurveyPrompt : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

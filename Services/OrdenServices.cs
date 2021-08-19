@@ -11,7 +11,7 @@ namespace Avocado_Market.Services
     {
         Task<List<Orden>> Get();
         Task<Orden> Get(int id);
-        Task Add(Carrito carrito, List<CarritoItems> ItemsAComprar);
+        Task Add(Carrito carrito, List<CarritoItems> ItemsAComprar, double lat, double lng, double costetotal, string comentario);
         Task<Orden> Update(Orden cate);
         Task<Orden> Delete(int id);
         Task<List<Orden>> Get(string correo);
@@ -33,18 +33,18 @@ namespace Avocado_Market.Services
             var OrdenExacta = await _context.Ordenes.FindAsync(id);
             return OrdenExacta;
         }
-        public async Task Add(Carrito carrito, List<CarritoItems> ItemsAComprar)
+        public async Task Add(Carrito carrito, List<CarritoItems> ItemsAComprar, double lat, double lng, double costetotal, string comentario)
         {
             Orden ordenNueva = new Orden();
             ordenNueva.email = carrito.Email;
             ordenNueva.Estado = "En proceso";
-            ordenNueva.Latitud = 1;
-            ordenNueva.Longitud = 1.1;
-            ordenNueva.CosteTotal = 0;
-            ordenNueva.Comentario = "Comentario generico 123";
+            ordenNueva.Latitud = lat;
+            ordenNueva.Longitud = lng;
+            ordenNueva.CosteTotal = costetotal;
+            ordenNueva.Comentario = comentario;
             foreach(CarritoItems item in ItemsAComprar)
             {
-                ordenNueva.CosteTotal = ordenNueva.CosteTotal + item.PrecioUnidad;
+                ordenNueva.CosteTotal = costetotal;
                 ItemsPedido Items = new ItemsPedido();
                 Items.Nombre = item.Nombre;
                 Items.Orden = ordenNueva;

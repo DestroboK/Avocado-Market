@@ -1,6 +1,53 @@
 ﻿@page "/admin/pedidos"
-<h3>Pedidos</h3>
+@inject IOrdenServices AccesoOrdenes
+<h3>Todos los pedidos emitidos..</h3>
+<MudTable Items="Ordenes" Hover="true" Breakpoint="Breakpoint.Sm">
+    <HeaderContent>
+        <MudTh>Id</MudTh>
+        <MudTh>Estado</MudTh>
+        <MudTh>Latitud</MudTh>
+        <MudTh>Longitud</MudTh>
+        <MudTh>Coste Total</MudTh>
+        <MudTh>Comentario</MudTh>
 
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Nr">@context.Id</MudTd>
+        <MudTd DataLabel="Sign">@context.Estado</MudTd>
+        <MudTd DataLabel="Sign">@context.Latitud</MudTd>
+        <MudTd DataLabel="Sign">@context.Longitud</MudTd>
+        <MudTd DataLabel="Sign">@context.CosteTotal</MudTd>
+        <MudTd DataLabel="Sign">@context.Comentario</MudTd>>
+        <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.Update" Size="Size.Large" IconSize="Size.Large" Label="Promover estado" OnClick="(() => ActualizarPedido(context))" Class="ma-2" />
+    </RowTemplate>
+</MudTable>
 @code {
+    List<Orden> Ordenes;
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
+    private AuthenticationState UsuarioLogueado;
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+        Ordenes = await AccesoOrdenes.Get();
+    }
 
+    public async void ActualizarPedido(Orden orden)
+    {
+        if (orden.Estado == "En proceso")
+        {
+            orden.Estado = "Enviandose";
+            await AccesoOrdenes.Update(orden);
+        }
+        else if (orden.Estado == "Enviandose")
+        {
+            orden.Estado = "Completado";
+            await AccesoOrdenes.Update(orden);
+        }
+        else if (orden.Estado == "Completado")
+        {
+            orden.Estado = "Ya no se puede promover mas";
+        }
+        Ordenes = await AccesoOrdenes.Get();
+    }
 }

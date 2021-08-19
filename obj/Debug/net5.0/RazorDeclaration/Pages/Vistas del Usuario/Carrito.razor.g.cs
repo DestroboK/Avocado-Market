@@ -117,6 +117,20 @@ using Avocado_Market.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 16 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Radzen;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Radzen.Blazor;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/carrito")]
     public partial class Carrito : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,23 +140,45 @@ using Avocado_Market.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 25 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Usuario\Carrito.razor"
+#line 51 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Usuario\Carrito.razor"
        
+    string Comentario;
     Avocado_Market.Data.Carrito MiCarrito;
     [CascadingParameter]
     private Task<AuthenticationState> EstadoLogin { get; set; }
     List<CarritoItems> Items;
     private AuthenticationState UsuarioLogueado;
+    double latitud, longitud, costetotal;
     protected override async Task OnInitializedAsync()
     {
         UsuarioLogueado = await EstadoLogin;
         MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
         Items = await AccesoCarrito.GetItems(MiCarrito.Id);
+        foreach (CarritoItems item in Items)
+        {
+            costetotal = costetotal + item.PrecioUnidad;
+        }
     }
 
     public async void AgregarPedido()
     {
-        await AccesoOrdenes.Add(MiCarrito, Items);
+        await AccesoOrdenes.Add(MiCarrito, Items, latitud, longitud, costetotal, Comentario);
+    }
+
+    void OnMapClick(GoogleMapClickEventArgs args)
+    {
+        latitud = args.Position.Lat;
+        longitud = args.Position.Lng;
+    }
+
+
+    bool open;
+    Anchor anchor;
+
+    void OpenDrawer(Anchor anchor)
+    {
+        open = true;
+        this.anchor = anchor;
     }
 
 #line default

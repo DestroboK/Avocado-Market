@@ -2,6 +2,19 @@
 <h3>Mis pedidos</h3>
 @inject IOrdenServices AccesoOrdenes
 @inject ICarritoServices AccesoCarrito
+
+        <h3>
+            Mapa con tus pedidos...
+        </h3>
+        <RadzenGoogleMap style="height: 400px; width: 90%" Zoom=@zoom Center=@(new GoogleMapPosition() { Lat = 42.6977, Lng = 23.3219 }) MapClick=@OnMapClick MarkerClick=@OnMarkerClick>
+            <Markers>
+                @foreach (var item in Ordenes)
+                {
+                    <RadzenGoogleMapMarker Label="@item.Estado" Position=@(new GoogleMapPosition() { Lat = @item.Latitud, Lng = @item.Longitud }) />
+                }
+            </Markers>
+        </RadzenGoogleMap>
+
 <MudTable Items="Ordenes" Hover="true" Breakpoint="Breakpoint.Sm">
     <HeaderContent>
         <MudTh>Id</MudTh>
@@ -34,5 +47,16 @@
         UsuarioLogueado = await EstadoLogin;
         Ordenes = await AccesoOrdenes.Get(UsuarioLogueado.User.Identity.Name);
     }
+    int zoom = 3;
+    bool showMadridMarker;
 
+    void OnMapClick(GoogleMapClickEventArgs args)
+    {
+       
+    }
+
+    void OnMarkerClick(RadzenGoogleMapMarker marker)
+    {
+        
+    }
 }

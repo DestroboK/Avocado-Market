@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LhgWtQWZ68Ys0XiZ6uOrrWkvJie2lpuNjVK/rHc78/ctzfmqivrqyymFVGHdpn+Hl/k105Id6Td9UpAzzakmrw==",
+  "dgSpecHash": "9TC/T3FmSnzzBSHPX4ujCHYMfyn7Nj756EYsOn5lBxC9ZKvcJKCwMNXeO0XOCUQKV+cU/vU4d5yxrEIQ1aI/Zw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Kelvin\\Desktop\\Polsia\\hola\\Avocado-Market\\Avocado Market.csproj",
   "expectedPackageFiles": [
@@ -77,6 +77,7 @@
     "C:\\Users\\Kelvin\\.nuget\\packages\\mudblazor\\5.1.0\\mudblazor.5.1.0.nupkg.sha512",
     "C:\\Users\\Kelvin\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
     "C:\\Users\\Kelvin\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Kelvin\\.nuget\\packages\\radzen.blazor\\3.9.2\\radzen.blazor.3.9.2.nupkg.sha512",
     "C:\\Users\\Kelvin\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Kelvin\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.4\\sqlitepclraw.bundle_e_sqlite3.2.0.4.nupkg.sha512",
     "C:\\Users\\Kelvin\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
@@ -115,6 +116,7 @@
     "C:\\Users\\Kelvin\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Kelvin\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512",
     "C:\\Users\\Kelvin\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
+    "C:\\Users\\Kelvin\\.nuget\\packages\\system.linq.dynamic.core\\1.2.2\\system.linq.dynamic.core.1.2.2.nupkg.sha512",
     "C:\\Users\\Kelvin\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
     "C:\\Users\\Kelvin\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Users\\Kelvin\\.nuget\\packages\\system.net.nameresolution\\4.3.0\\system.net.nameresolution.4.3.0.nupkg.sha512",

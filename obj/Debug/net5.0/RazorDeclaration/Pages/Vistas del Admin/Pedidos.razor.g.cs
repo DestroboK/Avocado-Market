@@ -117,6 +117,20 @@ using Avocado_Market.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 16 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Radzen;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Radzen.Blazor;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/admin/pedidos")]
     public partial class Pedidos : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -125,6 +139,42 @@ using Avocado_Market.Services;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 24 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Admin\Pedidos.razor"
+       
+    List<Orden> Ordenes;
+    [CascadingParameter]
+    private Task<AuthenticationState> EstadoLogin { get; set; }
+    private AuthenticationState UsuarioLogueado;
+    protected override async Task OnInitializedAsync()
+    {
+        UsuarioLogueado = await EstadoLogin;
+        Ordenes = await AccesoOrdenes.Get();
+    }
+
+    public async void ActualizarPedido(Orden orden)
+    {
+        if (orden.Estado == "En proceso")
+        {
+            orden.Estado = "Enviandose";
+            await AccesoOrdenes.Update(orden);
+        }
+        else if (orden.Estado == "Enviandose")
+        {
+            orden.Estado = "Completado";
+            await AccesoOrdenes.Update(orden);
+        }
+        else if (orden.Estado == "Completado")
+        {
+            orden.Estado = "Ya no se puede promover mas";
+        }
+        Ordenes = await AccesoOrdenes.Get();
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOrdenServices AccesoOrdenes { get; set; }
     }
 }
 #pragma warning restore 1591

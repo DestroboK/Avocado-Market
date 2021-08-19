@@ -117,6 +117,20 @@ using Avocado_Market.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 16 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Radzen;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 17 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\_Imports.razor"
+using Radzen.Blazor;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/usuario/pedidos")]
     public partial class PedidosUsuario : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -126,7 +140,7 @@ using Avocado_Market.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 26 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Usuario\PedidosUsuario.razor"
+#line 39 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Usuario\PedidosUsuario.razor"
        
     List<Orden> Ordenes;
     [CascadingParameter]
@@ -138,7 +152,18 @@ using Avocado_Market.Services;
         UsuarioLogueado = await EstadoLogin;
         Ordenes = await AccesoOrdenes.Get(UsuarioLogueado.User.Identity.Name);
     }
+    int zoom = 3;
+    bool showMadridMarker;
 
+    void OnMapClick(GoogleMapClickEventArgs args)
+    {
+       
+    }
+
+    void OnMarkerClick(RadzenGoogleMapMarker marker)
+    {
+        
+    }
 
 #line default
 #line hidden
