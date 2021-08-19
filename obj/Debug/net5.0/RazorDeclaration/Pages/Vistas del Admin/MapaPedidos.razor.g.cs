@@ -140,25 +140,19 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 11 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Admin\MapaPedidos.razor"
+#line 29 "C:\Users\Kelvin\Desktop\Polsia\hola\Avocado-Market\Pages\Vistas del Admin\MapaPedidos.razor"
        
-    public class MapDataSettings
+    List<Orden> Ordenes;
+    bool Proce, Env, Comp;
+    protected override async Task OnInitializedAsync()
     {
-        public Boolean async { get; set; }
-        public String dataOptions { get; set; }
-        public String type { get; set; }
+        Ordenes = await AccesoOrdenes.Get();
     }
-    public MapDataSettings MapShapeData = new MapDataSettings
-    {
-        async = true,
-        type = "GET",
-        dataOptions = "scripts/MapsData/world-map.json"
-    };
-
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOrdenServices AccesoOrdenes { get; set; }
     }
 }
 #pragma warning restore 1591
