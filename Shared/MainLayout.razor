@@ -3,6 +3,8 @@
 <MudThemeProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
+<link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
+
 
 <MudLayout>
     <MudAppBar Color="Color.Primary" Fixed="false" Dense="true">
@@ -14,22 +16,25 @@
         <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" Title="Cerrar sesion" />
         <MudIconButton Icon="@Icons.Material.Filled.Info" Color="Color.Inherit" Title="Acerca De" Link="/about" />
         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/DestroboK/Avocado-Market" Title="Repositorio del proyecto" />
+        <MudIconButton Icon="fas fa-fighter-jet" Color="Color.Inherit" OnClick="@((e) => DarkMode())"></MudIconButton>
     </MudAppBar>
     <MudDrawer @bind-Open="@_drawerOpen">
-        <NavMenu/>
+        <NavMenu />
     </MudDrawer>
     <MudMainContent>
-    <MudContainer MaxWidth="MaxWidth.Medium">
-        @Body
-    </MudContainer>
-</MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Medium">
+            @Body
+        </MudContainer>
+    </MudMainContent>
 </MudLayout>
+<MudThemeProvider Theme="currentTheme" />
 
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> EstadoLogin { get; set; }
 
     private AuthenticationState UsuarioLogueado;
+
     protected override async Task OnInitializedAsync()
     {
         UsuarioLogueado = await EstadoLogin;
@@ -40,5 +45,58 @@
     {
         _drawerOpen = !_drawerOpen;
     }
+
+    protected override void OnInitialized()
+    {
+        currentTheme = defaultTheme;
+    }
+
+    void DarkMode()
+    {
+        if (currentTheme == defaultTheme)
+        {
+            currentTheme = darkTheme;
+        }
+        else
+        {
+            currentTheme = defaultTheme;
+        }
+    }
+
+    MudTheme currentTheme = new MudTheme();
+    MudTheme defaultTheme = new MudTheme()
+    {
+        Palette = new Palette()
+        {
+            Black = "#272c34"
+        }
+    };
+
+    MudTheme darkTheme = new MudTheme()
+    {
+        Palette = new Palette()
+        {
+            Black = "#27272f",
+            Background = "#32333d",
+            BackgroundGrey = "#27272f",
+            Surface = "#373740",
+            DrawerBackground = "#27272f",
+            DrawerText = "rgba(255,255,255, 0.50)",
+            DrawerIcon = "rgba(255,255,255, 0.50)",
+            AppbarBackground = "#27272f",
+            AppbarText = "rgba(255,255,255, 0.70)",
+            TextPrimary = "rgba(255,255,255, 0.70)",
+            TextSecondary = "rgba(255,255,255, 0.50)",
+            ActionDefault = "#adadb1",
+            ActionDisabled = "rgba(255,255,255, 0.26)",
+            ActionDisabledBackground = "rgba(255,255,255, 0.12)",
+            Divider = "rgba(255,255,255, 0.12)",
+            DividerLight = "rgba(255,255,255, 0.06)",
+            TableLines = "rgba(255,255,255, 0.12)",
+            LinesDefault = "rgba(255,255,255, 0.12)",
+            LinesInputs = "rgba(255,255,255, 0.3)",
+            TextDisabled = "rgba(255,255,255, 0.2)"
+        }
+    };
 }
 
