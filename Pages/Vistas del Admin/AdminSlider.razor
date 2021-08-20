@@ -1,26 +1,48 @@
 ﻿@page  "/admin/slider"
 @attribute [Authorize(Roles = "Administrador")]
-<h3>AdminSlider</h3>
-<MudCarousel Style="height:200px;" ShowArrows="@arrows" ShowDelimiters="@delimiters" AutoCycle="@autocycle" TData="object">
-    <MudCarouselItem Transition="transition" Color="@Color.Primary">
-        <MudCard>
-            <MudCardMedia Image="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" Height="250" />
+@inject IServicioSlider Slider
+<h3>Administrar slider</h3>
+<center>
+    <MudCarousel Style="height:200px;" ShowArrows="@arrows" ShowDelimiters="@delimiters" AutoCycle="@autocycle" TData="object">
+        @foreach (PaginasSlider item in Paginas)
+        {
+        <MudCarouselItem Transition="transition" Color="@Color.Primary">
+            <MudCard>
+                <MudCardMedia Image=@item.UrlImagen Height="250" />
 
-        </MudCard>
-    </MudCarouselItem>
-    <MudCarouselItem Transition="transition" Color="@Color.Secondary">
-        <MudCardMedia Image="https://c.tenor.com/zrO4syNz96IAAAAC/kristen-bell-eleanor-shellstrop.gif" Height="250" />
-    </MudCarouselItem>
-    <MudCarouselItem Transition="transition">
-        <MudCardMedia Image="https://itla.edu.do/wp-content/uploads/2021/02/logo-full.png" Height="250" />
-    </MudCarouselItem>
-</MudCarousel>
+            </MudCard>
+        </MudCarouselItem>
+        }
+       
+    </MudCarousel>
+
+    @foreach (PaginasSlider item in Paginas)
+    {
+<MudCard>
+    <MudTextField Label="URL de la imagen en internet" Class="mt-3"
+                  @bind-Value="item.UrlImagen" />
+    <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" Color="Color.Info" OnClick="(()=> Actualizar(item))">Actualizar</MudButton>
+
+</MudCard>
+    }
+</center>
 
 @code{
-    //CODIGO PARA HACER QUE ESTA PAGINA SOLO SEA VISIBLE PARA ADMINS. COLOCAR AL INICIO DE PAGINA
-    //@attribute [Authorize(Roles = "Administrador")]//
+    PaginasSlider Sli = new PaginasSlider();
+    List<PaginasSlider> Paginas;
     private bool arrows = true;
     private bool delimiters = true;
     private bool autocycle = true;
     private Transition transition = Transition.Slide;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Paginas = await Slider.Get();
+    }
+
+    public async Task Actualizar(PaginasSlider slider)
+    {
+        await Slider.Update(slider);
+        Paginas = await Slider.Get();
+    }
 }

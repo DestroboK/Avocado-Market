@@ -14,6 +14,7 @@ namespace Avocado_Market.Services
         Task<Producto> Add(Producto cate);
         Task<Producto> Update(Producto cate);
         Task<Producto> Delete(int id);
+        Task<List<Producto>> PorCategoria(string categoria);
     }
     public class ProductoServices : IProductoServices
     {
@@ -45,7 +46,10 @@ namespace Avocado_Market.Services
             await _context.SaveChangesAsync();
             return cate;
         }
-
+        public async Task<List<Producto>> PorCategoria(string categoriaa)
+        {
+            return await _context.Productos.Where(b=> b.Categoria == categoriaa).ToListAsync();
+        }
 
 
         public async Task<Producto> Update(Producto cate)

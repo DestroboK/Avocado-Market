@@ -1,27 +1,30 @@
 @page "/"
+@inject IServicioSlider Slider
 <center>
     <MudText Typo="Typo.h1">Avocado Market</MudText>
-    <MudCarousel Style="height:200px;" ShowArrows="@arrows" ShowDelimiters="@delimiters" AutoCycle="@autocycle" TData="object">
+   <MudCarousel Style="height:200px;" ShowArrows="@arrows" ShowDelimiters="@delimiters" AutoCycle="@autocycle" TData="object">
+        @foreach (PaginasSlider item in Paginas)
+        {
         <MudCarouselItem Transition="transition" Color="@Color.Primary">
             <MudCard>
-                <MudCardMedia Image="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" Height="250" />
+                <MudCardMedia Image=@item.UrlImagen Height="250" />
 
             </MudCard>
         </MudCarouselItem>
-        <MudCarouselItem Transition="transition" Color="@Color.Secondary">
-            <MudCardMedia Image="https://c.tenor.com/zrO4syNz96IAAAAC/kristen-bell-eleanor-shellstrop.gif" Height="250" />
-        </MudCarouselItem>
-        <MudCarouselItem Transition="transition">
-            <MudCardMedia Image="https://itla.edu.do/wp-content/uploads/2021/02/logo-full.png" Height="250" />
-        </MudCarouselItem>
+        }
+       
     </MudCarousel>
 </center>
 
 @code{
-   
+       List<PaginasSlider> Paginas;
     private bool arrows = true;
     private bool delimiters = true;
     private bool autocycle = true;
     private Transition transition = Transition.Slide;
+        protected override async Task OnInitializedAsync()
+    {
+        Paginas = await Slider.Get();
+    }
 }
 

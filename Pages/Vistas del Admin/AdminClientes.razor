@@ -1,5 +1,6 @@
 ﻿@page "/admin/clientes"
 @inject IUsuarioService AccesoUsuarios
+@inject IOrdenServices AccesoOrdenes
 @using Microsoft.AspNetCore.Identity;
 @attribute [Authorize(Roles = "Administrador")]
 <h3>Administrar privilegios de las cuentas</h3>
@@ -30,15 +31,54 @@
                 <MudButton ButtonType="MudBlazor.ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="(() => DarAdmin(context.Id))">Promover a Admin</MudButton>
             }
         </MudTd>
+        <MudTd DataLabel="Sign">
+            <MudIconButton Icon="@Icons.Material.Filled.Search" Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Search" Color="Color.Info" OnClick="@(() => OpenDrawer(Anchor.Bottom, context))" />
+        </MudTd>
     </RowTemplate>
 </MudTable>
+<MudDrawer @bind-Open="@open" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
+    <MudDrawerHeader>
+        <MudText Typo="Typo.h6">Ordenes de este usuario</MudText>
+    </MudDrawerHeader>
+    <MudNavMenu>
+        @if (OrdenesEspecificas.Count == 0)
+        {
+            <MudText>Este usuario no ha comprado nada</MudText>
+        }
+        else
+        {
+            <MudText>Este usuario ha hecho @OrdenesEspecificas.Count pedido(s)</MudText>
+            <MudTable Items="OrdenesEspecificas" Hover="true" Breakpoint="Breakpoint.Sm">
+                <HeaderContent>
+                    <MudTh>Id</MudTh>
+                    <MudTh>Estado</MudTh>
+                    <MudTh>Latitud</MudTh>
+                    <MudTh>Longitud</MudTh>
+                    <MudTh>Coste Total</MudTh>
+                    <MudTh>Comentario</MudTh>
 
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Nr">@context.Id</MudTd>
+                    <MudTd DataLabel="Sign">@context.Estado</MudTd>
+                    <MudTd DataLabel="Sign">@context.Latitud</MudTd>
+                    <MudTd DataLabel="Sign">@context.Longitud</MudTd>
+                    <MudTd DataLabel="Sign">@context.CosteTotal</MudTd>
+                    <MudTd DataLabel="Sign">@context.Comentario</MudTd>>
+                </RowTemplate>
+            </MudTable>
+        }
+    </MudNavMenu>
+    <MudNavLink OnClick="(() => open = false)">Cerrar</MudNavLink>
+</MudDrawer>
 
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> EstadoLogin { get; set; }
     private readonly UserManager<IdentityUser> userManager;
     List<IdentityUser> Usuarios;
+    List<Orden> OrdenesEspecificas = new List<Orden>();
+    IdentityUser UsuarioBuscado;
     private AuthenticationState UsuarioLogueado;
     protected override async Task OnInitializedAsync()
     {
@@ -64,5 +104,15 @@
     {
         await AccesoUsuarios.QuitarAdmin(usuario);
         Usuarios = AccesoUsuarios.Get();
+    }
+
+    bool open;
+    Anchor anchor;
+
+    public async Task OpenDrawer(Anchor anchor, IdentityUser usuario)
+    {
+        OrdenesEspecificas = await AccesoOrdenes.Get(usuario.Email);
+        open = true;
+        this.anchor = anchor;
     }
 }

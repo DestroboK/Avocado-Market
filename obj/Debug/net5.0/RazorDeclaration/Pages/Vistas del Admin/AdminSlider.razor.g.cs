@@ -147,18 +147,30 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 19 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Vistas del Admin\AdminSlider.razor"
+#line 30 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Pages\Vistas del Admin\AdminSlider.razor"
       
-    //CODIGO PARA HACER QUE ESTA PAGINA SOLO SEA VISIBLE PARA ADMINS. COLOCAR AL INICIO DE PAGINA
-    //@attribute [Authorize(Roles = "Administrador")]//
+    PaginasSlider Sli = new PaginasSlider();
+    List<PaginasSlider> Paginas;
     private bool arrows = true;
     private bool delimiters = true;
     private bool autocycle = true;
     private Transition transition = Transition.Slide;
 
+    protected override async Task OnInitializedAsync()
+    {
+        Paginas = await Slider.Get();
+    }
+
+    public async Task Actualizar(PaginasSlider slider)
+    {
+        await Slider.Update(slider);
+        Paginas = await Slider.Get();
+    }
+
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IServicioSlider Slider { get; set; }
     }
 }
 #pragma warning restore 1591

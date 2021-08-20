@@ -139,7 +139,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 55 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Shared\NavMenu.razor"
+#line 56 "C:\Users\Kelvin\Desktop\Polsia\hola\hola2\Avocado-Market\Shared\NavMenu.razor"
       
     [CascadingParameter]
     private Task<AuthenticationState> EstadoLogin { get; set; }

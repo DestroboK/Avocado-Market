@@ -1,85 +1,109 @@
 ﻿@page "/mercado"
 @inject IProductoServices AccesoDatos
 @inject ICarritoServices AccesoCarrito
+@inject ICategoriaService AccesoCategorias
 
+<center>
+    <MudText Typo="Typo.h3">Mercado</MudText>
 
-<h1>Mercado</h1>
-
-@foreach (Producto Prod in ListaProductos)
-{
-    <MudCard Style="max-width:30%">
-        <MudCardHeader>
-            <CardHeaderContent>
-                <MudText Typo="Typo.body1">@Prod.Nombre</MudText>
-                <MudText Typo="Typo.body2">@Prod.Categoria</MudText>
-            </CardHeaderContent>
-        </MudCardHeader>
-        <MudCardMedia Image="@Prod.UrlImagen" Height="250" />
-        <MudCardContent>
-            <MudText Typo="Typo.body2">Existen @Prod.UnidadesDisponibles unidades restantes.</MudText>
-        </MudCardContent>
-        <MudCardActions>
-            <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.ShoppingCart" Size="Size.Large" IconSize="Size.Large" Label="@Prod.PrecioUnidad.ToString()" OnClick="(() => Seleccionar(Prod))" Class="ma-2" />
-        </MudCardActions>
-    </MudCard>
-}
-
-<MudButton Variant="Variant.Text" OnClick="@(() => OpenDrawer(Anchor.Bottom))">Bottom</MudButton>
-
-<MudDrawer @bind-Open="@open" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
-    <MudDrawerHeader>
-        <MudIconButton Icon="@Icons.Material.Filled.ShoppingCart" Color="Color.Inherit" Title="Ir a mi carrito" Link="/carrito">Mi Carrito</MudIconButton>
-        <MudText Typo="Typo.h6">Mi Carrito</MudText>
-    </MudDrawerHeader>
-    <MudNavMenu>
-        @foreach (Producto p in ListaProductos)
+    <MudSelect T="string" Label="Categoria" @bind-Value="Categoria">
+        @foreach (Categoria cat in Categorias)
         {
-            <MudText>@p.Nombre</MudText>
+            <MudSelectItem Value="@cat.Nombre" />
         }
-        <MudNavLink Match="NavLinkMatch.All">Store</MudNavLink>
-        <MudNavLink Match="NavLinkMatch.All">Library</MudNavLink>
-        <MudNavLink Match="NavLinkMatch.All">Community</MudNavLink>
-    </MudNavMenu>
-</MudDrawer>
-@code {
+
+    </MudSelect>
+    <MudIconButton Icon="@Icons.Material.Filled.Search" Color="Color.Inherit" OnClick="Actualizarr">Refrescar</MudIconButton>
+    <MudIconButton Icon="@Icons.Material.Filled.Refresh" Color="Color.Info" OnClick="PorCategoria">Buscar</MudIconButton>
+
+    <MudText Typo="Typo.h6">Se han cargado @ListaProductos.Count items.</MudText>
+</center>
+    <MudGrid Spacing="2">
+        @foreach (Producto Prod in ListaProductos)
+        {
+            <MudItem>
+                <MudCard Style="max-width:100%">
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.body1">@Prod.Nombre</MudText>
+                            <MudText Typo="Typo.body2">@Prod.Categoria</MudText>
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardMedia Image="@Prod.UrlImagen" Height="250" />
+                    <MudCardContent>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.ShoppingCart" Size="Size.Large" IconSize="Size.Large" Label="@Prod.PrecioUnidad.ToString()" OnClick="(() => Seleccionar(Prod))" Class="ma-2" />
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        }
+    </MudGrid>
+
+    <MudButton Variant="Variant.Text" OnClick="@(() => OpenDrawer(Anchor.Bottom))">Bottom</MudButton>
+
+    <MudDrawer @bind-Open="@open" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
+        <MudDrawerHeader>
+            <MudIconButton Icon="@Icons.Material.Filled.ShoppingCart" Color="Color.Inherit" Title="Ir a mi carrito" Link="/carrito">Mi Carrito</MudIconButton>
+            <MudText Typo="Typo.h6">Mi Carrito</MudText>
+        </MudDrawerHeader>
+        <MudNavMenu>
+            @foreach (Producto p in ListaProductos)
+            {
+                <MudText>@p.Nombre</MudText>
+            }
+        </MudNavMenu>
+    </MudDrawer>
+    @code {
         [CascadingParameter]
         private Task<AuthenticationState> EstadoLogin { get; set; }
 
-    private AuthenticationState UsuarioLogueado;
+        private AuthenticationState UsuarioLogueado;
 
-    Producto Produ = new Producto();
-    List<Producto> ListaProductos;
-    Avocado_Market.Data.Carrito MiCarrito;
-    private bool _loading = true;
+        Producto Produ = new Producto();
+        List<Producto> ListaProductos;
+        Avocado_Market.Data.Carrito MiCarrito;
+        private bool _loading = true;
+        List<Categoria> Categorias;
+        string Categoria;
+        protected override async Task OnInitializedAsync()
+        {
+            UsuarioLogueado = await EstadoLogin;
+            MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
+            ListaProductos = await AccesoDatos.Get(); ;
+            Categorias = await AccesoCategorias.Get();
+            _loading = false;
+        }
+        public async void Seleccionar(Producto temp)
+        {
+            await AccesoCarrito.AgregarItem(temp, MiCarrito);
+            MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
+            ListaProductos = await AccesoDatos.Get();
+        }
+        public async void Actualizar()
+        {
+            await AccesoDatos.Update(Produ);
+            ListaProductos = await AccesoDatos.Get();
+        }
+        public async void Actualizarr()
+        {
+            ListaProductos = await AccesoDatos.Get();
+        }
+
+        public async void PorCategoria()
+        {
+
+            ListaProductos = await AccesoDatos.PorCategoria(Categoria);
+        }
 
 
-    protected override async Task OnInitializedAsync()
-    {
-        UsuarioLogueado = await EstadoLogin;
-        MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
-        ListaProductos = await AccesoDatos.Get();
-        _loading = false;
+
+        bool open;
+        Anchor anchor;
+
+        void OpenDrawer(Anchor anchor)
+        {
+            open = true;
+            this.anchor = anchor;
+        }
     }
-    public async void Seleccionar(Producto temp)
-    {
-        await AccesoCarrito.AgregarItem(temp, MiCarrito);
-        MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
-        ListaProductos = await AccesoDatos.Get();
-    }
-    public async void Actualizar()
-    {
-        await AccesoDatos.Update(Produ);
-        ListaProductos = await AccesoDatos.Get();
-    }
-
-
-
-    bool open;
-    Anchor anchor;
-
-    void OpenDrawer(Anchor anchor)
-    {
-        open = true;
-        this.anchor = anchor;
-    }
-}

@@ -9,7 +9,8 @@
 <MudLayout>
     <MudAppBar Color="Color.Primary" Fixed="false" Dense="true">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        My Application
+        <MudIcon Icon="@Icons.Material.Rounded.Shop2" Style="font-size: large"></MudIcon>
+        Avocado Market
         <MudSpacer />
         <MudText>@UsuarioLogueado.User.Identity.Name</MudText>
         <MudIconButton Icon="@Icons.Material.Filled.AccountCircle" Color="Color.Inherit" Title="Usuario" />
