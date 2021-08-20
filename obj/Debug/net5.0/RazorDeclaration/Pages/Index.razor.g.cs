@@ -140,7 +140,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 39 "C:\Users\Administrador\Desktop\Avocado-Market\Pages\Index.razor"
+#line 24 "C:\Users\Administrador\Desktop\Avocado-Market\Pages\Index.razor"
       
        List<PaginasSlider> Paginas;
     private bool arrows = true;

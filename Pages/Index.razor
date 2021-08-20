@@ -1,7 +1,7 @@
 @page "/"
 @inject IServicioSlider Slider
 <center>
-    <MudText Typo="Typo.h1">Avocado Market</MudText>
+   
    <MudCarousel Style="height:200px;" ShowArrows="@arrows" ShowDelimiters="@delimiters" AutoCycle="@autocycle" TData="object">
         @foreach (PaginasSlider item in Paginas)
         {
@@ -15,26 +15,11 @@
        
     </MudCarousel>
 </center>
-<MudCard>
-    <MudCardMedia Image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn7MKlQhAF1FIZK1U9bnP7MIOhMjZnXOzwozgvbuL1j2csThxkvpmgMqdmvxuEzvL5Txs&usqp=CAU" Height="250" />
-    <MudCardContent>
-        <MudText Typo="Typo.h4">Presentacion</MudText>
-        <MudText Typo="Typo.h5">Nombre: Brian Dariel Lorenzo Lorenzo.</MudText>
-        <MudText Typo="Typo.h5">Matricula: 2019-8375.</MudText>
-        <MudText Typo="Typo.h5">Correo: 20198375@itla.edu.do.</MudText>
-        <MudText Typo="Typo.h5">hobby: Escuchar Musica.</MudText>
-    </MudCardContent>
+<center>
+    <MudText Typo="Typo.h1">Avocado Market</MudText>
+    <MudCardMedia Image="https://i.pinimg.com/originals/32/8e/21/328e210f9c3aab9fa69ee31a9614d113.gif" Height="480" />
+</center>
 
-    <MudCardMedia Image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn7MKlQhAF1FIZK1U9bnP7MIOhMjZnXOzwozgvbuL1j2csThxkvpmgMqdmvxuEzvL5Txs&usqp=CAU" Height="250" />
-    <MudCardContent>
-        <MudText Typo="Typo.h4">Presentacion</MudText>
-        <MudText Typo="Typo.h5">Nombre: Kelvin Ariel Hernandez</MudText>
-        <MudText Typo="Typo.h5">Matricula: 2019-8680.</MudText>
-        <MudText Typo="Typo.h5">Correo: 20198680@itla.edu.do.</MudText>
-        <MudText Typo="Typo.h5">hobby: Leer.</MudText>
-    </MudCardContent>
-
-</MudCard>
 
 @code{
        List<PaginasSlider> Paginas;

@@ -140,7 +140,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 25 "C:\Users\Administrador\Desktop\Avocado-Market\Pages\About.razor"
+#line 46 "C:\Users\Administrador\Desktop\Avocado-Market\Pages\About.razor"
       
     private bool arrows = true;
     private bool delimiters = true;
