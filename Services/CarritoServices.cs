@@ -15,6 +15,7 @@ namespace Avocado_Market.Services
         Task AgregarItem (Producto producto, Carrito carrito);
         Task<Carrito> Update(Carrito cate);
         Task<Carrito> Delete(int id);
+        Task<CarritoItems> Deleteee(int id, string nombre);
     }
     public class CarritoServices : ICarritoServices
     {
@@ -66,6 +67,16 @@ namespace Avocado_Market.Services
             return cate;
         }
 
+      public async Task<CarritoItems> Deleteee(int id, string nombre)
+        {
+            var produc =  _context.Productos.Where(b=> b.Nombre == nombre ).FirstOrDefault();
+            produc.UnidadesDisponibles++;
+             _context.Productos.Update(produc);
+            var cate = await _context.ItemsCarrito.FindAsync(id);
+            _context.ItemsCarrito.Remove(cate);
+            await _context.SaveChangesAsync();
+            return cate;
+        }
 
 
         public async Task<Carrito> Update(Carrito cate)

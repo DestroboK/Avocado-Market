@@ -13,9 +13,8 @@
         }
 
     </MudSelect>
-    <MudIconButton Icon="@Icons.Material.Filled.Search" Color="Color.Inherit" OnClick="Actualizarr">Refrescar</MudIconButton>
-    <MudIconButton Icon="@Icons.Material.Filled.Refresh" Color="Color.Info" OnClick="PorCategoria">Buscar</MudIconButton>
-
+     <MudIconButton Icon="@Icons.Material.Filled.Search" Color="Color.Inherit" OnClick="PorCategoria">Refrescar</MudIconButton>
+    <MudIconButton Icon="@Icons.Material.Filled.Refresh" Color="Color.Info" OnClick="Actualizarr">Buscar</MudIconButton>
     <MudText Typo="Typo.h6">Se han cargado @ListaProductos.Count items.</MudText>
 </center>
     <MudGrid Spacing="2">
@@ -31,9 +30,16 @@
                     </MudCardHeader>
                     <MudCardMedia Image="@Prod.UrlImagen" Height="250" />
                     <MudCardContent>
+                        
+                        <MudText Typo="Typo.body2">Quedan @Prod.UnidadesDisponibles</MudText>
                     </MudCardContent>
                     <MudCardActions>
-                        <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.ShoppingCart" Size="Size.Large" IconSize="Size.Large" Label="@Prod.PrecioUnidad.ToString()" OnClick="(() => Seleccionar(Prod))" Class="ma-2" />
+                        @if(Prod.UnidadesDisponibles != 0){
+                            <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.ShoppingCart" Size="Size.Large" IconSize="Size.Large" Label="@Prod.PrecioUnidad.ToString()" OnClick="(() => Seleccionar(Prod))" Class="ma-2" />
+                        }
+                        else{
+                            <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.ShoppingCart" Disabled="true" Size="Size.Large" IconSize="Size.Large" Label="Agotado" OnClick="(() => Seleccionar(Prod))" Class="ma-2" />
+                        }
                     </MudCardActions>
                 </MudCard>
             </MudItem>
@@ -76,6 +82,8 @@
         }
         public async void Seleccionar(Producto temp)
         {
+            temp.UnidadesDisponibles --;
+            await AccesoDatos.Update(temp);
             await AccesoCarrito.AgregarItem(temp, MiCarrito);
             MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
             ListaProductos = await AccesoDatos.Get();

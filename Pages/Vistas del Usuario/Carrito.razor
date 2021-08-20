@@ -17,7 +17,7 @@
         <MudTd DataLabel="Sign">@context.Nombre</MudTd>
         <MudTd DataLabel="Sign">@context.Categoria</MudTd>
         <MudTd DataLabel="Sign">@context.PrecioUnidad</MudTd>
-        <MudTd DataLabel="Sign">@context.Unidades</MudTd>
+        <MudTd DataLabel="Sign"><MudButton Variant="Variant.Text" OnClick="@(() => Borrar(context.Id, context.Nombre))">Borrar</MudButton></MudTd>
         <MudTd DataLabel="Sign"><MudCard><MudCardMedia Image="@context.UrlImagen" Height="30" /></MudCard></MudTd>
     </RowTemplate>
 </MudTable>
@@ -28,7 +28,7 @@
             <MudText Typo="Typo.h6">Pasarela de compra...</MudText>
         </MudDrawerHeader>
         <MudText Typo="Typo.h6">¿A donde te lo llevamos?</MudText>
-        <RadzenGoogleMap style="height: 200px; width: 90%" Zoom=3 Center=@(new GoogleMapPosition() { Lat = 0, Lng = 0 }) MapClick=@OnMapClick>
+        <RadzenGoogleMap style="height: 200px; width: 90%" Zoom=3 Center=@(new GoogleMapPosition() { Lat = latitud, Lng = longitud }) MapClick=@OnMapClick>
             <Markers>
                     <RadzenGoogleMapMarker Label="Aqui llegara" Position=@(new GoogleMapPosition() { Lat = latitud, Lng = longitud }) />
 
@@ -70,6 +70,7 @@
     public async void AgregarPedido()
     {
         await AccesoOrdenes.Add(MiCarrito, Items, latitud, longitud, costetotal, Comentario);
+        open = false;
     }
 
     void OnMapClick(GoogleMapClickEventArgs args)
@@ -78,7 +79,11 @@
         longitud = args.Position.Lng;
     }
 
-
+    public async void Borrar(int item,string Nombre)
+    {
+        await AccesoCarrito.Deleteee(item, Nombre);
+        Items = await AccesoCarrito.GetItems(MiCarrito.Id);
+    }
     bool open;
     Anchor anchor;
 
