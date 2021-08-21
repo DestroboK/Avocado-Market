@@ -1,30 +1,35 @@
 ﻿<MudNavMenu>
     
     <AuthorizeView>
+
         <Authorized>
-            <MudMenu Label="Vistas de usuarios" Variant="Variant.Filled" Color="Color.Info" Direction="Direction.Right" OffsetX="true" Expanded="false" Style="padding: 2px">
-                <MudNavLink Href="/mercado">Mercado</MudNavLink>
-                <MudNavLink Href="/carrito">Mi carrito</MudNavLink>
-                <MudNavLink Href="/usuario/pedidos">Mis pedidos</MudNavLink>
+            <MudPaper Width="250px" Class="d-inline-flex py-3" Square="true">
+                <MudNavMenu Class="mud-width-full">
+                    <MudText Typo="Typo.h6" Class="px-4">Menu</MudText>
+                    <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Elija su opcion</MudText>
+                    <MudDivider Class="my-2" />
+                    <MudNavLink Href="/dashboard" Icon="fas fa-chart-line">Dashboard</MudNavLink>
+                 
 
-            </MudMenu>
+                    <MudNavGroup Title="Vistas de usuarios" Icon="@Icons.Filled.ManageAccounts" Expanded="false">
+                        <MudNavLink Href="/mercado" Icon="@Icons.Filled.AddBusiness" IconColor="Color.Success">Mercado</MudNavLink>
+                        <MudNavLink Href="/carrito" Icon="@Icons.Filled.ShoppingCart" IconColor="Color.Info">Mi carrito</MudNavLink>
+                        <MudNavLink Href="/usuario/pedidos" Icon="@Icons.Filled.PersonAdd" IconColor="Color.Info">Mis pedidos</MudNavLink>
+                    </MudNavGroup>
 
-            <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Favorite" Color="Color.Error" FullWidth="true">
-                <MudNavLink Class="ms-2" Href="/about">About</MudNavLink>
-            </MudButton>
+                    <MudNavGroup Title="Administrador" Icon="@Icons.Filled.Handyman" Expanded="false">
+                        <MudNavLink Href="/admin/clientes" Icon="@Icons.Filled.PeopleAlt" IconColor="Color.Success">Clientes</MudNavLink>
+                        <MudNavLink Href="/admin/slider" Icon="@Icons.Filled.AppRegistration" IconColor="Color.Info">Administrar slider</MudNavLink>
+                        <MudNavLink Href="/admin/categorias" Icon="@Icons.Filled.CreateNewFolder" IconColor="Color.Info">Administrar categorías</MudNavLink>
+                        <MudNavLink Href="/admin/productos" Icon="@Icons.Filled.AddShoppingCart" IconColor="Color.Info">Administrar productos</MudNavLink>
+                        <MudNavLink Href="/admin/pedidos" Icon="@Icons.Filled.AdminPanelSettings" IconColor="Color.Info">Administrar pedidos</MudNavLink>
+                        <MudNavLink Href="/admin/mapapedidos" Icon="@Icons.Filled.AddLocationAlt" IconColor="Color.Info">Mapa de pedidos</MudNavLink>
+                        <MudNavLink Href="/admin/cumples" Icon="@Icons.Filled.AutoAwesome" IconColor="Color.Info">Cumpleaños por mes</MudNavLink>
+                    </MudNavGroup>
 
-            <MudButton Disabled="@_processing" OnClick="ProcessSomething" Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">
-                @if (_processing)
-                {
-                    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
-                    <MudText Class="ms-2">Procesando</MudText>
-
-                }
-                else
-                {
-                    <MudNavLink Icon="@Icons.Material.Filled.ThumbUp" Href="/identity/account/logout">Cerrar Sesion</MudNavLink>
-                }
-            </MudButton>
+                    <MudNavLink Href="/identity/account/logout" Icon="@Icons.Filled.Logout">Cerrar Sesion</MudNavLink>
+                </MudNavMenu>
+            </MudPaper>
 
         </Authorized>
         <NotAuthorized>
@@ -36,24 +41,6 @@
         </NotAuthorized>
     </AuthorizeView>
     <MudSpacer />
-    <AuthorizeView Roles="Administrador">
-        <Authorized>
-            <MudMenu Label="Configuración" Variant="Variant.Filled" Color="Color.Tertiary" Direction="Direction.Right" OffsetX="true" Expanded="false" Style="padding: 2px">
-
-                <MudNavLink Href="/admin/clientes">Clientes</MudNavLink>
-                <MudNavLink Href="/admin/slider">Administrar slider</MudNavLink>
-                <MudNavLink Href="/admin/categorias">Administrar categorías</MudNavLink>
-                <MudNavLink Href="/admin/productos">Administrar productos</MudNavLink>
-                <MudNavLink Href="/admin/pedidos">Administrar pedidos</MudNavLink>
-                <MudNavLink Href="/admin/mapapedidos">Mapa de pedidos</MudNavLink>
-                <MudNavLink Href="/admin/cumples">Cumpleaños por mes</MudNavLink>
-
-
-            </MudMenu>
-        </Authorized>
-        <NotAuthorized>
-        </NotAuthorized>
-    </AuthorizeView>
 </MudNavMenu>
 
 @code{
