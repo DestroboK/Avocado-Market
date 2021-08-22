@@ -5,7 +5,7 @@
         <Authorized>
             <MudPaper Width="250px" Class="d-inline-flex py-3" Square="true">
                 <MudNavMenu Class="mud-width-full">
-                    <MudText Typo="Typo.h6" Class="px-4">Menu</MudText>
+                    <MudText Typo="Typo.h6" Class="px-4">Avocado Market</MudText>
                     <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Elija su opcion</MudText>
                     <MudDivider Class="my-2" />
                     <MudNavLink Href="/dashboard" Icon="fas fa-chart-line">Dashboard</MudNavLink>
@@ -24,7 +24,7 @@
                         <MudNavLink Href="/admin/productos" Icon="@Icons.Filled.AddShoppingCart" IconColor="Color.Info">Administrar productos</MudNavLink>
                         <MudNavLink Href="/admin/pedidos" Icon="@Icons.Filled.AdminPanelSettings" IconColor="Color.Info">Administrar pedidos</MudNavLink>
                         <MudNavLink Href="/admin/mapapedidos" Icon="@Icons.Filled.AddLocationAlt" IconColor="Color.Info">Mapa de pedidos</MudNavLink>
-                        <MudNavLink Href="/admin/cumples" Icon="@Icons.Filled.AutoAwesome" IconColor="Color.Info">Cumpleaños por mes</MudNavLink>
+                        <MudNavLink Href="/admin/cumples" Icon="@Icons.Filled.Cake" IconColor="Color.Info">Cumpleaños por mes</MudNavLink>
                     </MudNavGroup>
 
                     <MudNavLink Href="/identity/account/logout" Icon="@Icons.Filled.Logout">Cerrar Sesion</MudNavLink>
@@ -34,9 +34,28 @@
         </Authorized>
         <NotAuthorized>
 
-            <MudNavLink Icon="@Icons.Filled.Label" Href="/identity/account/login">Iniciar Sesion</MudNavLink>
-
-            <MudNavLink Icon="@Icons.Filled.Label" Href="/about">About</MudNavLink>
+            <MudPaper Width="250px" Class="py-3"  Square="true" >
+                <MudNavMenu >
+                    <MudText Typo="Typo.h6" Class="px-4">Avocado Market</MudText>
+                    <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">My Application</MudText>
+                    <MudDivider Class="my-2" />
+                    <MudNavGroup  Title="Opciones"Icon="@Icons.Filled.AutoStories" @bind-Expanded=_isExpanded>
+                        <MudNavLink  Icon="@Icons.Filled.AccountBalance" Href="/identity/account/login"  IconColor="Color.Info">Iniciar Sesion</MudNavLink>
+                        <MudNavLink Icon="@Icons.Filled.AccountCircle" Href="/about" IconColor="Color.Info">About</MudNavLink>
+                    </MudNavGroup>
+                </MudNavMenu>
+            </MudPaper>
+            <br />
+            <MudText>
+                @if (_isExpanded)
+                {
+                <b class="mud-theme-tertiary rounded pa-2 ml-2">Expandido</b>
+                }
+                else
+                {
+            <b class="mud-theme-error rounded pa-2 ml-2">colapsado</b>
+                }
+            </MudText>
 
         </NotAuthorized>
     </AuthorizeView>
@@ -60,4 +79,6 @@
         await Task.Delay(2000);
         _processing = false;
     }
+
+    bool _isExpanded = true;
 }

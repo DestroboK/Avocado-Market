@@ -139,7 +139,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 46 "C:\Users\Administrador\Desktop\Avocado-Market\Shared\NavMenu.razor"
+#line 65 "C:\Users\Administrador\Desktop\Avocado-Market\Shared\NavMenu.razor"
       
     [CascadingParameter]
     private Task<AuthenticationState> EstadoLogin { get; set; }
@@ -157,6 +157,8 @@ using Radzen.Blazor;
         await Task.Delay(2000);
         _processing = false;
     }
+
+    bool _isExpanded = true;
 
 #line default
 #line hidden
