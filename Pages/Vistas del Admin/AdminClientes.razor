@@ -75,17 +75,17 @@
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> EstadoLogin { get; set; }
-    private readonly UserManager<IdentityUser> userManager;
-    List<IdentityUser> Usuarios;
+    private readonly UserManager<Usuario> userManager;
+    List<Usuario> Usuarios;
     List<Orden> OrdenesEspecificas = new List<Orden>();
-    IdentityUser UsuarioBuscado;
+    Usuario UsuarioBuscado;
     private AuthenticationState UsuarioLogueado;
     protected override async Task OnInitializedAsync()
     {
         UsuarioLogueado = await EstadoLogin;
         Usuarios = AccesoUsuarios.Get();
     }
-    public bool UsuarioEsAdmin(IdentityUser usuario)
+    public bool UsuarioEsAdmin(Usuario usuario)
     {
 
         bool EsAdmin = AccesoUsuarios.EsAdmin(usuario).Result;
@@ -109,7 +109,7 @@
     bool open;
     Anchor anchor;
 
-    public async Task OpenDrawer(Anchor anchor, IdentityUser usuario)
+    public async Task OpenDrawer(Anchor anchor, Usuario usuario)
     {
         OrdenesEspecificas = await AccesoOrdenes.Get(usuario.Email);
         open = true;

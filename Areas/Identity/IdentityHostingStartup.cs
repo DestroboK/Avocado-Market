@@ -19,7 +19,7 @@ namespace Avocado_Market.Areas.Identity
                     options.UseSqlite(
                         context.Configuration.GetConnectionString("UsuarioContextConnection")));
 
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<UsuarioContext>();
 

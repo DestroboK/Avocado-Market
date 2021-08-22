@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Avocado_Market.Data;
 namespace Avocado_Market.Data
 {
-    public class UsuarioContext : IdentityDbContext<IdentityUser>
+    public class UsuarioContext : IdentityDbContext<Usuario>
     {
         public DbSet<Carrito> Carrito { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
