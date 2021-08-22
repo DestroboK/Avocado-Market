@@ -1361,3 +1361,6 @@ C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\obj\Debug\net5.0\Avocado Ma
 C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\obj\Debug\net5.0\Avocado Market.Views.pdb
 C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\obj\Debug\net5.0\Avocado Market.csproj.CopyComplete
 C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\obj\Debug\net5.0\Avocado Market.genruntimeconfig.cache
+C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\bin\Debug\net5.0\EPPlus.dll
+C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\bin\Debug\net5.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll

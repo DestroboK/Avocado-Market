@@ -62,13 +62,6 @@ using Microsoft.AspNetCore.Components.Web.Virtualization;
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
-using Microsoft.JSInterop;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 9 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Avocado_Market;
 
@@ -132,14 +125,21 @@ using Radzen.Blazor;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
-using Microsoft.AspNetCore.Identity;
+#line 2 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
+using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
+#line 3 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
+using OfficeOpenXml;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
            [Authorize(Roles = "Administrador")]
 
 #line default
@@ -154,7 +154,7 @@ using Microsoft.AspNetCore.Identity;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 52 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
+#line 57 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
        
     int Mes;
     List<Usuario> Usuarios;
@@ -181,10 +181,41 @@ using Microsoft.AspNetCore.Identity;
         Usuarios = AccesoUsuarios.Get(Mes);
     }
 
+    public void GenerarExcel(){
+            byte[] fileContents;
+            ExcelPackage.LicenseContext=LicenseContext.NonCommercial;
+            using(var package=new ExcelPackage()){
+                var workSheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                workSheet.Cells[1,1].Value = "Correo";
+                workSheet.Cells[1,2].Value = "Rol";
+                workSheet.Cells[1,3].Value = "Fecha de nacimiento";
+                int i = 3;
+                foreach(Usuario usu in Usuarios){
+                    workSheet.Cells[i,1].Value = usu.Email;
+                    if (UsuarioEsAdmin(usu) == true)
+                    {
+                        workSheet.Cells[i,2].Value = "Administrador";
+                    }
+                else if (UsuarioEsAdmin(usu) == false)
+                    {
+                        workSheet.Cells[i,2].Value = "Cliente";
+                    }
+                    workSheet.Cells[i,3].Value = usu.FechaNac.ToShortDateString();
+                    i++;
+                }
+                fileContents = package.GetAsByteArray();
+            }
+
+        iJSRuntime.InvokeAsync<string>("SaveAsFile", "Lista de cumples.xlsx", Convert.ToBase64String(fileContents));
+
+    }
+
 #line default
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IUsuarioService AccesoUsuarios { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime iJSRuntime { get; set; }
     }
 }
 #pragma warning restore 1591

@@ -1,6 +1,8 @@
 ﻿@page "/admin/cumples"
+@using Microsoft.JSInterop
+@using OfficeOpenXml
+@inject IJSRuntime iJSRuntime
 @inject IUsuarioService AccesoUsuarios
-@using Microsoft.AspNetCore.Identity;
 @attribute [Authorize(Roles = "Administrador")]
 <center>
 <h3>Compleaños de todos los usuarios</h3>
@@ -20,6 +22,9 @@
     </MudSelect>
      <MudIconButton Icon="@Icons.Material.Filled.Search" Color="Color.Inherit" OnClick="PorMes">Buscar</MudIconButton>
     <MudIconButton Icon="@Icons.Material.Filled.Refresh" Color="Color.Info" OnClick="Actualizar">Refrescar</MudIconButton>
+    @if(Usuarios.Count != 0){
+ <MudIconButton Icon="@Icons.Material.Filled.Download" Color="Color.Info" OnClick="GenerarExcel">Descargar</MudIconButton>
+}
 </center>
 <MudTable Items="@Usuarios" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
     <HeaderContent>
@@ -73,5 +78,35 @@
     public async void PorMes()
     {
         Usuarios = AccesoUsuarios.Get(Mes);
+    }
+
+    public void GenerarExcel(){
+            byte[] fileContents;
+            ExcelPackage.LicenseContext=LicenseContext.NonCommercial;
+            using(var package=new ExcelPackage()){
+                var workSheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                workSheet.Cells[1,1].Value = "Correo";
+                workSheet.Cells[1,2].Value = "Rol";
+                workSheet.Cells[1,3].Value = "Fecha de nacimiento";
+                int i = 3;
+                foreach(Usuario usu in Usuarios){
+                    workSheet.Cells[i,1].Value = usu.Email;
+                    if (UsuarioEsAdmin(usu) == true)
+                    {
+                        workSheet.Cells[i,2].Value = "Administrador";
+                    }
+                else if (UsuarioEsAdmin(usu) == false)
+                    {
+                        workSheet.Cells[i,2].Value = "Cliente";
+                    }
+                    workSheet.Cells[i,3].Value = usu.FechaNac.ToShortDateString();
+                    i++;
+                }
+                fileContents = package.GetAsByteArray();
+            }
+
+        iJSRuntime.InvokeAsync<string>("SaveAsFile", "Lista de cumples.xlsx", Convert.ToBase64String(fileContents));
+
     }
 }
