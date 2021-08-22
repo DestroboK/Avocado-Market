@@ -140,7 +140,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 51 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Usuario\Carrito.razor"
+#line 53 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Usuario\Carrito.razor"
        
     string Comentario;
     Avocado_Market.Data.Carrito MiCarrito;
@@ -160,9 +160,11 @@ using Radzen.Blazor;
         }
     }
 
-    public async void AgregarPedido()
+    public async void AgregarPedido(List<CarritoItems> Items)
     {
         await AccesoOrdenes.Add(MiCarrito, Items, latitud, longitud, costetotal, Comentario);
+        await AccesoCarrito.Delete(Items);
+        Items = await AccesoCarrito.GetItems(MiCarrito.Id);
         open = false;
     }
 
@@ -176,6 +178,7 @@ using Radzen.Blazor;
     {
         await AccesoCarrito.Deleteee(item, Nombre);
         Items = await AccesoCarrito.GetItems(MiCarrito.Id);
+        
     }
     bool open;
     Anchor anchor;

@@ -8,23 +8,12 @@
                     <MudText Typo="Typo.h6" Class="px-4">Avocado Market</MudText>
                     <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Elija su opcion</MudText>
                     <MudDivider Class="my-2" />
-                    <MudNavLink Href="/dashboard" Icon="fas fa-chart-line">Dashboard</MudNavLink>
                  
 
                     <MudNavGroup Title="Vistas de usuarios" Icon="@Icons.Filled.ManageAccounts" Expanded="false">
                         <MudNavLink Href="/mercado" Icon="@Icons.Filled.AddBusiness" IconColor="Color.Success">Mercado</MudNavLink>
                         <MudNavLink Href="/carrito" Icon="@Icons.Filled.ShoppingCart" IconColor="Color.Info">Mi carrito</MudNavLink>
                         <MudNavLink Href="/usuario/pedidos" Icon="@Icons.Filled.PersonAdd" IconColor="Color.Info">Mis pedidos</MudNavLink>
-                    </MudNavGroup>
-
-                    <MudNavGroup Title="Administrador" Icon="@Icons.Filled.Handyman" Expanded="false">
-                        <MudNavLink Href="/admin/clientes" Icon="@Icons.Filled.PeopleAlt" IconColor="Color.Success">Clientes</MudNavLink>
-                        <MudNavLink Href="/admin/slider" Icon="@Icons.Filled.AppRegistration" IconColor="Color.Info">Administrar slider</MudNavLink>
-                        <MudNavLink Href="/admin/categorias" Icon="@Icons.Filled.CreateNewFolder" IconColor="Color.Info">Administrar categorías</MudNavLink>
-                        <MudNavLink Href="/admin/productos" Icon="@Icons.Filled.AddShoppingCart" IconColor="Color.Info">Administrar productos</MudNavLink>
-                        <MudNavLink Href="/admin/pedidos" Icon="@Icons.Filled.AdminPanelSettings" IconColor="Color.Info">Administrar pedidos</MudNavLink>
-                        <MudNavLink Href="/admin/mapapedidos" Icon="@Icons.Filled.AddLocationAlt" IconColor="Color.Info">Mapa de pedidos</MudNavLink>
-                        <MudNavLink Href="/admin/cumples" Icon="@Icons.Filled.Cake" IconColor="Color.Info">Cumpleaños por mes</MudNavLink>
                     </MudNavGroup>
 
                     <MudNavLink Href="/identity/account/logout" Icon="@Icons.Filled.Logout">Cerrar Sesion</MudNavLink>
@@ -37,10 +26,10 @@
             <MudPaper Width="250px" Class="py-3"  Square="true" >
                 <MudNavMenu >
                     <MudText Typo="Typo.h6" Class="px-4">Avocado Market</MudText>
-                    <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">My Application</MudText>
                     <MudDivider Class="my-2" />
                     <MudNavGroup  Title="Opciones"Icon="@Icons.Filled.AutoStories" @bind-Expanded=_isExpanded>
                         <MudNavLink  Icon="@Icons.Filled.AccountBalance" Href="/identity/account/login"  IconColor="Color.Info">Iniciar Sesion</MudNavLink>
+                        <MudNavLink  Icon="@Icons.Filled.Add" Href="/identity/account/register"  IconColor="Color.Info">Registrarme</MudNavLink>
                         <MudNavLink Icon="@Icons.Filled.AccountCircle" Href="/about" IconColor="Color.Info">About</MudNavLink>
                     </MudNavGroup>
                 </MudNavMenu>
@@ -53,11 +42,29 @@
                 }
                 else
                 {
-            <b class="mud-theme-error rounded pa-2 ml-2">colapsado</b>
+            <b class="mud-theme-error rounded pa-2 ml-2">Colapsado</b>
                 }
             </MudText>
 
         </NotAuthorized>
+    </AuthorizeView>
+
+<MudDivider></MudDivider>    
+    <AuthorizeView Roles="Administrador">
+<Aurhorized>
+    <MudPaper Width="250px" Class="d-inline-flex py-3" Square="true">
+
+                    <MudNavGroup Title="Configuración" Icon="@Icons.Filled.Handyman" Expanded="false">
+                        <MudNavLink Href="/admin/clientes" Icon="@Icons.Filled.PeopleAlt" IconColor="Color.Success">Clientes</MudNavLink>
+                        <MudNavLink Href="/admin/slider" Icon="@Icons.Filled.AppRegistration" IconColor="Color.Info">Administrar slider</MudNavLink>
+                        <MudNavLink Href="/admin/categorias" Icon="@Icons.Filled.CreateNewFolder" IconColor="Color.Info">Administrar categorías</MudNavLink>
+                        <MudNavLink Href="/admin/productos" Icon="@Icons.Filled.AddShoppingCart" IconColor="Color.Info">Administrar productos</MudNavLink>
+                        <MudNavLink Href="/admin/pedidos" Icon="@Icons.Filled.AdminPanelSettings" IconColor="Color.Info">Administrar pedidos</MudNavLink>
+                        <MudNavLink Href="/admin/mapapedidos" Icon="@Icons.Filled.AddLocationAlt" IconColor="Color.Info">Mapa de pedidos</MudNavLink>
+                        <MudNavLink Href="/admin/cumples" Icon="@Icons.Filled.Cake" IconColor="Color.Info">Cumpleaños por mes</MudNavLink>
+                    </MudNavGroup>
+    </MudPaper>
+</Aurhorized>
     </AuthorizeView>
     <MudSpacer />
 </MudNavMenu>
@@ -70,14 +77,6 @@
     protected override async Task OnInitializedAsync()
     {
         UsuarioLogueado = await EstadoLogin;
-    }
-    private bool _processing = false;
-
-    async Task ProcessSomething()
-    {
-        _processing = true;
-        await Task.Delay(2000);
-        _processing = false;
     }
 
     bool _isExpanded = true;

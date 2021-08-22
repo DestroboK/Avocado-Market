@@ -19,7 +19,15 @@
         <MudTd DataLabel="Sign">@context.Longitud</MudTd>
         <MudTd DataLabel="Sign">@context.CosteTotal</MudTd>
         <MudTd DataLabel="Sign">@context.Comentario</MudTd>
-        <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.Update" Size="Size.Large" IconSize="Size.Large" Label="Promover estado" OnClick="(() => ActualizarPedido(context))" Class="ma-2" />
+        @if (context.Estado == "Completado")
+        {
+            <MudFab Color="Color.Primary" Disabled="true"  Size="Size.Large" IconSize="Size.Large" Label="Pedido Completado" OnClick="(() => ActualizarPedido(context))" Class="ma-2" />
+            }
+        else 
+        {
+                <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.Update" Size="Size.Large" IconSize="Size.Large" Label="Promover estado" OnClick="(() => ActualizarPedido(context))" Class="ma-2" />
+        }
+        
     </RowTemplate>
 </MudTable>
 @code {

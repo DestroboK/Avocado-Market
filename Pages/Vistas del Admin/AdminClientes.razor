@@ -12,8 +12,8 @@
 
     </HeaderContent>
     <RowTemplate>
-        <MudTd DataLabel="Nr">@context.Id</MudTd>
-        <MudTd DataLabel="Sign">@context.Email</MudTd>
+        <MudTd DataLabel="Sign">@context.Id</MudTd>
+                <MudTd DataLabel="Nr">@context.Email</MudTd>
         <MudTd DataLabel="Sign">
             @if (UsuarioEsAdmin(context) == true)
             {
@@ -78,7 +78,6 @@
     private readonly UserManager<Usuario> userManager;
     List<Usuario> Usuarios;
     List<Orden> OrdenesEspecificas = new List<Orden>();
-    Usuario UsuarioBuscado;
     private AuthenticationState UsuarioLogueado;
     protected override async Task OnInitializedAsync()
     {

@@ -139,18 +139,6 @@ using Radzen.Blazor;
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 30 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\About.razor"
-      
-    private bool arrows = true;
-    private bool delimiters = true;
-    private bool autocycle = true;
-    private Transition transition = Transition.Slide;
-
-
-#line default
-#line hidden
-#nullable disable
     }
 }
 #pragma warning restore 1591

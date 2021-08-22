@@ -139,7 +139,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 65 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Shared\NavMenu.razor"
+#line 72 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Shared\NavMenu.razor"
       
     [CascadingParameter]
     private Task<AuthenticationState> EstadoLogin { get; set; }
@@ -148,14 +148,6 @@ using Radzen.Blazor;
     protected override async Task OnInitializedAsync()
     {
         UsuarioLogueado = await EstadoLogin;
-    }
-    private bool _processing = false;
-
-    async Task ProcessSomething()
-    {
-        _processing = true;
-        await Task.Delay(2000);
-        _processing = false;
     }
 
     bool _isExpanded = true;

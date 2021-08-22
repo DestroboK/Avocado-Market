@@ -147,7 +147,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 25 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Pedidos.razor"
+#line 33 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Pedidos.razor"
        
     List<Orden> Ordenes;
     [CascadingParameter]

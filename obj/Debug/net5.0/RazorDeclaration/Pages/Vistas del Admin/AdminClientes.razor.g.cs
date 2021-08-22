@@ -161,7 +161,6 @@ using Microsoft.AspNetCore.Identity;
     private readonly UserManager<Usuario> userManager;
     List<Usuario> Usuarios;
     List<Orden> OrdenesEspecificas = new List<Orden>();
-    Usuario UsuarioBuscado;
     private AuthenticationState UsuarioLogueado;
     protected override async Task OnInitializedAsync()
     {

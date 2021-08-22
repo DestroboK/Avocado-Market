@@ -1,7 +1,9 @@
 ﻿@page "/carrito"
 @inject ICarritoServices AccesoCarrito
 @inject IOrdenServices AccesoOrdenes
-<h1>Carrito de @MiCarrito.Email, Id: @MiCarrito.Id</h1>
+<center>
+   <h1>Carrito de @MiCarrito.Email</h1> 
+</center>
 <MudTable Items="@Items" Hover="true" Breakpoint="Breakpoint.Sm">
     <HeaderContent>
         <MudTh>Id</MudTh>
@@ -44,7 +46,7 @@
         </MudNavMenu>
         <MudText Typo="Typo.h5">Total: @costetotal RD$</MudText>
         <MudTextField @bind-Value="Comentario" Label="Escribe aqui a detalle tu direccion y un comentario para localizarte." Variant="Variant.Outlined"></MudTextField>
-        <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.ShoppingCart" Size="Size.Large" IconSize="Size.Large" Label="Comprar" OnClick="AgregarPedido" Class="ma-2" />
+        <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.ShoppingCart" Size="Size.Large" IconSize="Size.Large" Label="Comprar" OnClick="(()=>AgregarPedido(Items))" Class="ma-2" />
 
     </center>
 </MudDrawer>
@@ -67,9 +69,11 @@
         }
     }
 
-    public async void AgregarPedido()
+    public async void AgregarPedido(List<CarritoItems> Items)
     {
         await AccesoOrdenes.Add(MiCarrito, Items, latitud, longitud, costetotal, Comentario);
+        await AccesoCarrito.Delete(Items);
+        Items = await AccesoCarrito.GetItems(MiCarrito.Id);
         open = false;
     }
 
@@ -83,6 +87,7 @@
     {
         await AccesoCarrito.Deleteee(item, Nombre);
         Items = await AccesoCarrito.GetItems(MiCarrito.Id);
+        
     }
     bool open;
     Anchor anchor;

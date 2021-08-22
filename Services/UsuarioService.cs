@@ -14,6 +14,7 @@ namespace Avocado_Market.Services
         Task<bool> EsAdmin(Usuario usuario);
         Task DarAdmin(string usuario);
         Task QuitarAdmin(string usuario);
+        List<Usuario> Get(int Mes);
 
     }
     public class UsuarioService : IUsuarioService
@@ -30,6 +31,12 @@ namespace Avocado_Market.Services
          
             var users = userManager.Users.ToList();
             
+            return users;
+        }
+        public List<Usuario> Get(int Mes)
+        {
+         
+            var users = userManager.Users.Where(b=> b.FechaNac.Month == Mes).ToList();
             return users;
         }
 

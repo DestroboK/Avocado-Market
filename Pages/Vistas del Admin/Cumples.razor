@@ -1,7 +1,77 @@
 ﻿@page "/admin/cumples"
+@inject IUsuarioService AccesoUsuarios
+@using Microsoft.AspNetCore.Identity;
 @attribute [Authorize(Roles = "Administrador")]
-<h3>Cumpleaños</h3>
+<center>
+<h3>Compleaños de todos los usuarios</h3>
+<MudSelect T="int" Label="Mes de cumpleaños" @bind-Value="Mes">
+<MudSelectItem T="int" Value="1">Enero</MudSelectItem>
+<MudSelectItem T="int" Value="2">Febrero</MudSelectItem>
+<MudSelectItem T="int" Value="3">Marzo</MudSelectItem>
+<MudSelectItem T="int" Value="4">Abril</MudSelectItem>
+<MudSelectItem T="int" Value="5">Mayo</MudSelectItem>
+<MudSelectItem T="int" Value="6">Junio</MudSelectItem>
+<MudSelectItem T="int" Value="7">Julio</MudSelectItem>
+<MudSelectItem T="int" Value="8">Agosto</MudSelectItem>
+<MudSelectItem T="int" Value="9">Septiembre</MudSelectItem>
+<MudSelectItem T="int" Value="10">Octubre</MudSelectItem>
+<MudSelectItem T="int" Value="11">Noviembre</MudSelectItem>
+<MudSelectItem T="int" Value="12">Diciembre</MudSelectItem>
+    </MudSelect>
+     <MudIconButton Icon="@Icons.Material.Filled.Search" Color="Color.Inherit" OnClick="PorMes">Buscar</MudIconButton>
+    <MudIconButton Icon="@Icons.Material.Filled.Refresh" Color="Color.Info" OnClick="Actualizar">Refrescar</MudIconButton>
+</center>
+<MudTable Items="@Usuarios" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>Correo</MudTh>
+        <MudTh>Rol</MudTh>
+        <MudTh>Fecha de nacimiento</MudTh>
 
+    </HeaderContent>
+    <RowTemplate>
+
+                <MudTd DataLabel="Nr">@context.Email</MudTd>
+        <MudTd DataLabel="Sign">
+            @if (UsuarioEsAdmin(context) == true)
+            {
+                <MudText>Administrador</MudText>
+            }
+            else if (UsuarioEsAdmin(context) == false)
+            {
+                <MudText>Cliente</MudText>
+            }
+        </MudTd>
+        <MudTd>@context.FechaNac.ToShortDateString()</MudTd>
+    </RowTemplate>
+</MudTable>
+@if(Usuarios.Count == 0){
+    <center>
+    <MudText>No hay usuarios para este mes.</MudText>
+    </center>
+}
 @code {
+    int Mes;
+    List<Usuario> Usuarios;
 
+    protected override async Task OnInitializedAsync()
+    {
+        Usuarios = AccesoUsuarios.Get();
+    }
+    public bool UsuarioEsAdmin(Usuario usuario)
+    {
+
+        bool EsAdmin = AccesoUsuarios.EsAdmin(usuario).Result;
+
+        return EsAdmin;
+    }
+
+    public async void Actualizar()
+    {
+        Usuarios = AccesoUsuarios.Get();
+    }
+
+    public async void PorMes()
+    {
+        Usuarios = AccesoUsuarios.Get(Mes);
+    }
 }

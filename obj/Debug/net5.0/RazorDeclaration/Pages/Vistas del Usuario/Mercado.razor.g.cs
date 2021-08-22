@@ -150,7 +150,6 @@ using Radzen.Blazor;
         Producto Produ = new Producto();
         List<Producto> ListaProductos;
         Avocado_Market.Data.Carrito MiCarrito;
-        private bool _loading = true;
         List<Categoria> Categorias;
         string Categoria;
         protected override async Task OnInitializedAsync()
@@ -159,7 +158,6 @@ using Radzen.Blazor;
             MiCarrito = await AccesoCarrito.Get(UsuarioLogueado.User.Identity.Name);
             ListaProductos = await AccesoDatos.Get(); ;
             Categorias = await AccesoCategorias.Get();
-            _loading = false;
         }
         public async void Seleccionar(Producto temp)
         {

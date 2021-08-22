@@ -132,7 +132,14 @@ using Radzen.Blazor;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
+#line 3 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
            [Authorize(Roles = "Administrador")]
 
 #line default
@@ -146,6 +153,38 @@ using Radzen.Blazor;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 52 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Admin\Cumples.razor"
+       
+    int Mes;
+    List<Usuario> Usuarios;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Usuarios = AccesoUsuarios.Get();
+    }
+    public bool UsuarioEsAdmin(Usuario usuario)
+    {
+
+        bool EsAdmin = AccesoUsuarios.EsAdmin(usuario).Result;
+
+        return EsAdmin;
+    }
+
+    public async void Actualizar()
+    {
+        Usuarios = AccesoUsuarios.Get();
+    }
+
+    public async void PorMes()
+    {
+        Usuarios = AccesoUsuarios.Get(Mes);
+    }
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IUsuarioService AccesoUsuarios { get; set; }
     }
 }
 #pragma warning restore 1591

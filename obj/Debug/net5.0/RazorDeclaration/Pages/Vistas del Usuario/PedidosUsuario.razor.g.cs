@@ -153,8 +153,6 @@ using Radzen.Blazor;
         Ordenes = await AccesoOrdenes.Get(UsuarioLogueado.User.Identity.Name);
     }
     int zoom = 3;
-    bool showMadridMarker;
-
     void OnMapClick(GoogleMapClickEventArgs args)
     {
        
