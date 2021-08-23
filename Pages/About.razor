@@ -4,6 +4,7 @@
 <p>Acceda desde (((<a href="https://youtu.be/vUcVR28zlKQ">aquí</a>))) o desde el boton en el menu de navegacion si ve un error.</p>
 
 <MudCard>
+    <MudProgressLinear Color="Color.Primary" Buffer="true" Value="@Value" BufferValue="@BufferValue" Class="my-7" />
     <MudCardMedia Image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn7MKlQhAF1FIZK1U9bnP7MIOhMjZnXOzwozgvbuL1j2csThxkvpmgMqdmvxuEzvL5Txs&usqp=CAU" Height="250" />
     <MudCardContent>
         <MudText Typo="Typo.h4">Presentacion</MudText>
@@ -12,6 +13,8 @@
         <MudText Typo="Typo.h5">Correo: 20198375@itla.edu.do.</MudText>
         <MudText Typo="Typo.h5">hobby: Escuchar Musica.</MudText>
     </MudCardContent>
+
+    <MudProgressLinear Color="Color.Secondary" Buffer="true" Value="@Value" BufferValue="@BufferValue" Class="my-7" />
 
     <MudCardMedia Image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn7MKlQhAF1FIZK1U9bnP7MIOhMjZnXOzwozgvbuL1j2csThxkvpmgMqdmvxuEzvL5Txs&usqp=CAU" Height="250" />
     <MudCardContent>
@@ -23,5 +26,40 @@
     </MudCardContent>
 
 </MudCard>
+
+@code {
+    public int Value { get; set; }
+    public int BufferValue { get; set; }
+
+    public async void StartTimerAsync()
+    {
+        if (disposed)
+            return;
+        Value = 100;
+        BufferValue = 100;
+        while (Value > 0)
+        {
+            Value = Value - 4;
+            BufferValue = BufferValue - 5;
+            StateHasChanged();
+            await Task.Delay(500);
+            if (disposed)
+                return;
+        }
+        Value = 100;
+        BufferValue = 100;
+        StartTimerAsync();
+    }
+    protected override void OnInitialized()
+        => StartTimerAsync();
+
+    bool disposed;
+    public void Dispose()
+    {
+        disposed = true;
+    }
+
+}
+
 
 
