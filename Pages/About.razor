@@ -1,7 +1,20 @@
 @page "/about"
+@inject IServicioSlider Slider
+<center>
 
-<iframe width="560" height="315" src="https://youtu.be/vUcVR28zlKQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>Acceda desde (((<a href="https://youtu.be/vUcVR28zlKQ">aquí</a>))) o desde el boton en el menu de navegacion si ve un error.</p>
+    <MudCarousel Style="height:200px;" ShowArrows="@arrows" ShowDelimiters="@delimiters" AutoCycle="@autocycle" TData="object">
+        @foreach (PaginasSlider item in Paginas)
+        {
+            <MudCarouselItem Transition="transition" Color="@Color.Primary">
+                <MudCard>
+                    <MudCardMedia Image=@item.UrlImagen Height="250" />
+
+                </MudCard>
+            </MudCarouselItem>
+        }
+
+    </MudCarousel>
+</center>
 
 <MudCard>
     <MudProgressLinear Color="Color.Primary" Buffer="true" Value="@Value" BufferValue="@BufferValue" Class="my-7" />
@@ -12,6 +25,10 @@
         <MudText Typo="Typo.h5">Matricula: 2019-8375.</MudText>
         <MudText Typo="Typo.h5">Correo: 20198375@itla.edu.do.</MudText>
         <MudText Typo="Typo.h5">hobby: Escuchar Musica.</MudText>
+
+        <MudFab Color="Color.Error" Icon="@Icons.Custom.Brands.YouTube"  Link="https://youtu.be/vUcVR28zlKQ"/>
+       
+
     </MudCardContent>
 
     <MudProgressLinear Color="Color.Secondary" Buffer="true" Value="@Value" BufferValue="@BufferValue" Class="my-7" />
@@ -23,6 +40,8 @@
         <MudText Typo="Typo.h5">Matricula: 2019-8680.</MudText>
         <MudText Typo="Typo.h5">Correo: 20198680@itla.edu.do.</MudText>
         <MudText Typo="Typo.h5">hobby: Leer.</MudText>
+
+        <MudFab Color="Color.Error" Icon="@Icons.Custom.Brands.YouTube" Link="https://youtu.be/vUcVR28zlKQ" />
     </MudCardContent>
 
 </MudCard>
@@ -57,6 +76,16 @@
     public void Dispose()
     {
         disposed = true;
+    }
+
+    List<PaginasSlider> Paginas;
+    private bool arrows = true;
+    private bool delimiters = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+    protected override async Task OnInitializedAsync()
+    {
+        Paginas = await Slider.Get();
     }
 
 }

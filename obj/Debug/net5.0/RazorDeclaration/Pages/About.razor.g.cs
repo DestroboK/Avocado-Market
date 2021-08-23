@@ -140,7 +140,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 30 "C:\Users\Administrador\Desktop\Avocado-Market\Pages\About.razor"
+#line 49 "C:\Users\Administrador\Desktop\Avocado-Market\Pages\About.razor"
        
     public int Value { get; set; }
     public int BufferValue { get; set; }
@@ -173,10 +173,21 @@ using Radzen.Blazor;
         disposed = true;
     }
 
+    List<PaginasSlider> Paginas;
+    private bool arrows = true;
+    private bool delimiters = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+    protected override async Task OnInitializedAsync()
+    {
+        Paginas = await Slider.Get();
+    }
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IServicioSlider Slider { get; set; }
     }
 }
 #pragma warning restore 1591
