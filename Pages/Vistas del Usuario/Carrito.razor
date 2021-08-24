@@ -1,9 +1,11 @@
 ﻿@page "/carrito"
 @inject ICarritoServices AccesoCarrito
 @inject IOrdenServices AccesoOrdenes
+@inject IJSRuntime iJSRuntime
 <center>
    <h1>Carrito de @MiCarrito.Email</h1> 
 </center>
+
 <MudTable Items="@Items" Hover="true" Breakpoint="Breakpoint.Sm">
     <HeaderContent>
         <MudTh>Id</MudTh>
@@ -23,8 +25,14 @@
         <MudTd DataLabel="Sign"><MudCard><MudCardMedia Image="@context.UrlImagen" Height="30" /></MudCard></MudTd>
     </RowTemplate>
 </MudTable>
+<center>
+<MudText Typo="Typo.h5">Total: @costetotal RD$</MudText>
+</center>
+@if(Items.Count != 0){
 <MudButton Variant="Variant.Text" OnClick="@(() => OpenDrawer(Anchor.Bottom))">Comprar</MudButton>
+}
 <MudDrawer @bind-Open="@open" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
+    <MudCard>
     <center>
         <MudDrawerHeader>
             <MudText Typo="Typo.h6">Pasarela de compra...</MudText>
@@ -36,19 +44,13 @@
 
             </Markers>
         </RadzenGoogleMap>
-        <p>@latitud , @longitud</p>
-        <MudNavMenu>
-            @foreach (CarritoItems p in Items)
-            {
-                <MudText>@p.Nombre</MudText>
-            }
-
-        </MudNavMenu>
         <MudText Typo="Typo.h5">Total: @costetotal RD$</MudText>
         <MudTextField @bind-Value="Comentario" Label="Escribe aqui a detalle tu direccion y un comentario para localizarte." Variant="Variant.Outlined"></MudTextField>
+        <div style="text-align: center; margin-top: 0.625rem;" id="paypal-button-container"></div>
         <MudFab Color="Color.Primary" Icon="@Icons.Material.Filled.ShoppingCart" Size="Size.Large" IconSize="Size.Large" Label="Comprar" OnClick="(()=>AgregarPedido(Items))" Class="ma-2" />
-
+        <MudNavLink OnClick="(() => open = false)">Cerrar</MudNavLink>
     </center>
+    </MudCard>
 </MudDrawer>
 @code {
     string Comentario;
@@ -67,6 +69,12 @@
         {
             costetotal = costetotal + item.PrecioUnidad;
         }
+    }
+    protected override async Task OnAfterRenderAsync(bool render)
+    {
+            if(render){
+                await iJSRuntime.InvokeVoidAsync("boton");
+            }
     }
 
     public async void AgregarPedido(List<CarritoItems> Items)

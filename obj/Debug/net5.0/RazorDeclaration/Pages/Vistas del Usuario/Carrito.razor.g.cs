@@ -13,119 +13,119 @@ namespace Avocado_Market.Pages.Vistas_del_Usuario
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 1 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 2 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 3 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 4 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 5 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 6 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 7 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 8 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 9 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Avocado_Market;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 10 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Avocado_Market.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 11 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using MudBlazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 12 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Syncfusion.Blazor.Maps;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 13 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Avocado_Market.Areas.Identity;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 14 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Avocado_Market.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 15 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Avocado_Market.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 16 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "C:\Users\Administrador\Desktop\Avocado-Market\_Imports.razor"
+#line 17 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
@@ -140,7 +140,7 @@ using Radzen.Blazor;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 53 "C:\Users\Administrador\Desktop\Avocado-Market\Pages\Vistas del Usuario\Carrito.razor"
+#line 55 "C:\Users\Kelvin\Desktop\PracticaFinal\Avocado-Market\Pages\Vistas del Usuario\Carrito.razor"
        
     string Comentario;
     Avocado_Market.Data.Carrito MiCarrito;
@@ -158,6 +158,12 @@ using Radzen.Blazor;
         {
             costetotal = costetotal + item.PrecioUnidad;
         }
+    }
+    protected override async Task OnAfterRenderAsync(bool render)
+    {
+            if(render){
+                await iJSRuntime.InvokeVoidAsync("boton");
+            }
     }
 
     public async void AgregarPedido(List<CarritoItems> Items)
@@ -192,6 +198,7 @@ using Radzen.Blazor;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime iJSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOrdenServices AccesoOrdenes { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICarritoServices AccesoCarrito { get; set; }
     }
