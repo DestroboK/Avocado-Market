@@ -1,0 +1,12 @@
+Repositorio de GitHub: https://github.com/DestroboK/Avocado-Market
+
+Enlace a Video Demostrativo: https://www.youtube.com/watch?v=rtk0S6aeFr4
+
+Version hosteada: No pudimos hostear el programa, lo indicamos en el video y perdimos esos puntos :(
+
+Integrantes del Avocado Team:
+
+Kelvin Ariel Hernández González - 2019-8680
+Brian Dariel Lorenzo Lorenzo - 2019-8375
+
+Fue un placer programar con usted :)

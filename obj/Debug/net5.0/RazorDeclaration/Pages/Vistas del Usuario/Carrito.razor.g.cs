@@ -170,8 +170,8 @@ using Radzen.Blazor;
     {
         await AccesoOrdenes.Add(MiCarrito, Items, latitud, longitud, costetotal, Comentario);
         await AccesoCarrito.Delete(Items);
-        Items = await AccesoCarrito.GetItems(MiCarrito.Id);
         open = false;
+        Items = await AccesoCarrito.GetItems(MiCarrito.Id);
     }
 
     void OnMapClick(GoogleMapClickEventArgs args)
